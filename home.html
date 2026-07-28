@@ -1,532 +1,672 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from allappsreveiws.com.ng/palmpay/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 21:11:55 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <title>hello</title>
-</head>
-<body>
-    <style>
-             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;900&amp;display=swap');
-        /* Styles remain the same as before */
-   * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-        body {
-            background: #efeded;
-        }
-        .box {
-            width: 95%;
-            height: 150px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 8px;
-            border: 1px solid  #ffffff;
-            border-radius: 9px;
-            
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Dashboard · Cash Tube2025</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-        }
-        .money{
-            width: 95%;
-            height: 150px;
-            margin: 0 auto;
-            background:   green;
-            border-radius: 8px;
-            color: white;
-            padding-top: 10px;
-        }
-        .money p, h2 {
-            padding-left: 19px;
-        }
-        .input-container {
-            position: relative;
-            margin-bottom: 20px;
-        }
+    body {
+      background: #f0f2f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 90px 0;
+    }
 
-        .input-container input,
-        .input-container textarea {
-            border: none;
-            border-bottom: 2px solid #000;
-            background: white;
-            outline: none;
-            padding: 5px 0;
-            font-size: 16px;
-            width: 90%;
-            margin: 0 auto;
-            display: block;
-        }
+    /* Animated Gradient Header */
+    #gradient {
+      width: 100%;
+      max-width: 480px;
+      height: 180px;
+      border-radius: 0 0 40px 40px;
+      padding: 30px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-        .input-container input:focus,
-        .input-container textarea:focus {
-            border-bottom-color: green;
-        }
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-        .input-container label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            pointer-events: none;
-            transition: 0.2s ease all;
-            font-size: 16px;
-        }
+    .header-content .avatar {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
 
-        .input-container input:focus ~ label,
-        .input-container textarea:focus ~ label,
-        .input-container input:valid ~ label,
-        .input-container textarea:valid ~ label {
-            transform: translateY(-29px);
-            font-size: 14px;
-            color: green;
-        }
+    .header-content .user-info h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+    }
 
-        label {
-            padding-left: 17px;
-        }
-        .form {
-            width: 95%;
-            height: 320px;
-            margin: 0 auto;
-            /* background-color: rgb(172, 145, 145); */
-            border-radius: 10px;
-            border: 1px solid   green;
-            background: #ffffff;
-        }
-        button {
-            width: 40%;
-        height: 40px;
-        margin: 0 auto;
-        display: block;
-        background:   green;
-        font-size: 22px;
-        color: white;
+    .header-content .user-info p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
 
-        }
+    /* Balance Card */
+    .balance-card {
+      width: 100%;
+      max-width: 480px;
+      margin: -30px 16px 16px;
+      padding: 24px 20px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      position: relative;
+      z-index: 10;
+    }
 
-        .bottom-menu {
+    .balance-card .balance-label {
+      font-size: 14px;
+      color: #94a3b8;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .balance-card .balance-label i {
+      color: #22c55e;
+    }
+
+    .balance-card .balance-amount {
+      font-size: 36px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-top: 4px;
+    }
+
+    .balance-card .balance-amount span {
+      color: #7c3aed;
+    }
+
+    .balance-card .balance-sub {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .balance-card .balance-sub i {
+      color: #f59e0b;
+      margin-right: 4px;
+    }
+
+    /* Stats Row */
+    .stats-row {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .stat-item {
+      background: white;
+      border-radius: 16px;
+      padding: 14px 12px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+      border: 1px solid #f1f5f9;
+    }
+
+    .stat-item .stat-number {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .stat-item .stat-number.green {
+      color: #22c55e;
+    }
+
+    .stat-item .stat-number.purple {
+      color: #7c3aed;
+    }
+
+    .stat-item .stat-number.orange {
+      color: #f59e0b;
+    }
+
+    .stat-item .stat-label {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Video Section */
+    .video-section {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+
+    .video-section .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .video-section .section-title i {
+      color: #7c3aed;
+    }
+
+    .video-wrapper {
+      background: #0f172a;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      display: block;
+    }
+
+    .video-section .video-note {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .video-section .video-note .highlight {
+      color: #7c3aed;
+      font-weight: 700;
+    }
+
+    .video-section .video-note i {
+      color: #22c55e;
+    }
+
+    /* Withdrawal Form */
+    .form-section {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 16px;
+      margin-bottom: 20px;
+    }
+
+    .form-section .form-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-section .form-title i {
+      color: #7c3aed;
+    }
+
+    .form-card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      border: 1px solid #f1f5f9;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+
+    .input-group label i {
+      color: #7c3aed;
+      width: 18px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      font-size: 15px;
+      transition: 0.2s;
+      background: #f8fafc;
+      outline: none;
+    }
+
+    .input-group input:focus {
+      border-color: #7c3aed;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
+    }
+
+    .input-group input:focus ~ .floating-label,
+    .input-group input:valid ~ .floating-label {
+      transform: translateY(-24px);
+      font-size: 12px;
+      color: #7c3aed;
+    }
+
+    .btn-withdraw {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #22c55e, #16a34a);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px -6px rgba(34, 197, 94, 0.35);
+    }
+
+    .btn-withdraw:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -8px rgba(34, 197, 94, 0.4);
+    }
+
+    .btn-withdraw:active {
+      transform: scale(0.97);
+    }
+
+    .btn-withdraw i {
+      font-size: 18px;
+    }
+
+    /* Crypto Button */
+    .crypto-section {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 16px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .btn-crypto {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 32px;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 60px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      cursor: pointer;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-crypto:hover {
+      border-color: #f59e0b;
+      background: #fffbeb;
+      transform: translateY(-2px);
+    }
+
+    .btn-crypto i {
+      font-size: 22px;
+      color: #f7931a;
+    }
+
+    /* Bottom Menu */
+    .bottom-menu {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background-color:     green;
-      color: #fff;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 10px;
+      padding: 12px 10px 16px;
       z-index: 999;
     }
 
     .bottom-menu a {
-      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #94a3b8;
       text-decoration: none;
-      font-weight: bold;
+      font-size: 11px;
+      font-weight: 600;
+      gap: 2px;
+      transition: 0.2s;
     }
-    .slider {
-  width: 100%;
-  overflow: hidden;
-}
 
-.slide {
-  display: none;
-}
+    .bottom-menu a i {
+      font-size: 20px;
+    }
 
-.slide.active {
-  display: block;
-}
+    .bottom-menu a.active {
+      color: #7c3aed;
+    }
 
-.slide img {
-  width: 100%;
-  height: 150px;
-}
+    .bottom-menu a.active i {
+      background: #ede9fe;
+      padding: 6px 14px;
+      border-radius: 30px;
+    }
 
-g { color: red;
-
-}
-.top {
-    width: 100%;
-    height: fit-content;
-    background: none;
-}
-.top img {
-    width: 80px;
-    padding-left: 12px;
-    padding-top: 40px;
-    color: none;
-}
-.top p {
-    position: relative;
-    top: -56px;
-    padding-left: 96px;
-    font-size: 20px;
-    background: none;
-}
-
-
-    body{
-     background-color: #000000;
-   padding: 0px;
-   margin: 0px;
- }
-
-#gradient
-{
-  width: 100%;
-  height: auto;
-  padding: 0px;
-  margin: 0px;
-}
-    </style>
-    
-    <div id="gradient" />
- <div class="top">
-        <img src="img/top.png" alt="">
-        <p><b>Hello, Valid User</b></p>
-        <p>Good Day.</p>
-   </div>  <br>
-   <div class="money">
-    <p>Available Balance</p>
-    <h2>₦ <span id="number">7500</span></h2>
-   </div> <br> <br>
-    <div>
-        <center>
-             <h1>Watch video to earn money</h1>
-
-    <iframe width="95%" height="315" style="margin: 0 auto; display: block;" src="video2.mp4"
-     title="YouTube video player" frameborder="0" 
-     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-     <br><br> <h4>The more videos you watch the more your <g>available balance</g> increase</h4>
-
-        </center>
-        
-    </div>
-    <br><br>
-    <div class="form"> <br>
-        <form id="fundForm">
-            <div class="input-container">
-              <input type="number" id="palmpayNumber" name="palmpayNumber" required>
-              <label for="palmpayNumber">Account Number</label>
-            </div>
-            <div class="input-container">
-              <input type="text" id="palmpayName" name="palmpayName" required placeholder="">
-              <label for="palmpayName">Account Name</label>
-            </div>
-            <div class="input-container">
-              <input type="text" id="palmpayCome" name="palmpayCome" required placeholder="">
-              <label for="palmpayCome">Bank Name</label>
-            </div>
-            <div class="input-container">
-              <input type="number" id="amount" name="amount" required placeholder="">
-              <label for="amount">Amount</label>
-            </div>
-            <br>
-            <button type="submit">Withdraw</button> <br>
-          </form>
-          
-    </div> <br> <br> <br>
-
-      <script>
-                   // JavaScript to handle menu interactions (optional)
-    // You can add functionality such as active menu item highlighting or additional menu actions
-
-    // Example: Add an "active" class to the currently selected menu item
-    const menuItems = document.querySelectorAll('.bottom-menu a');
-
-menuItems.forEach((item) => {
-  item.addEventListener('click', () => {
-    menuItems.forEach((menuItem) => {
-      menuItem.classList.remove('active');
-    });
-
-    item.classList.add('active');
-  });
-});
-
-function startSlider() {
-  const slides = document.querySelectorAll('.slide');
-  let currentSlide = 0;
-
-  function showSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-  }
-
-  setInterval(showSlide, 3000); // Change slide every 3 seconds
-}
-
-startSlider();
-
-        // Get the element where the number will be displayed
-        const numberElement = document.getElementById('number');
-
-        // Check if the number exists in localStorage
-        let number = localStorage.getItem('number');
-
-        // If the number doesn't exist, set it to 0
-        if (!number) {
-            number = 5500;
-        }
-
-        // Function to update the number
-        function updateNumber() {
-            number = parseInt(number) + 164;
-            numberElement.textContent = formatNumber(number);
-
-            // Store the updated number in localStorage
-            localStorage.setItem('number', number);
-        }
-
-        // Function to format the number with commas and decimal places
-        function formatNumber(number) {
-            return number.toLocaleString('en-US');
-        }
-
-        // Update the number initially
-        updateNumber();
-
-        // Call the updateNumber function every 5 minutes (300,000 milliseconds)
-        setInterval(updateNumber, 2000);
-
-        document.getElementById('fundForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
-
-    const palmpayNumber = document.getElementById('palmpayNumber').value;
-    const palmpayName = document.getElementById('palmpayName').value;
-    const palmpayCome = document.getElementById('palmpayCome').value;
-    const amount = document.getElementById('amount').value;
-
-    // Store form data in localStorage
-    localStorage.setItem('palmpayNumber', palmpayNumber);
-    localStorage.setItem('palmpayName', palmpayName);
-    localStorage.setItem('palmpayCome', palmpayCome);
-    localStorage.setItem('amount', amount);
-
-    // Navigate to the next page
-    window.location.href = 'next-page.html';
-  });
-      </script>
-
-
-<!-- Start of LiveChat (www.livechat.com) code -->
-<script>
-  window.__lc = window.__lc || {};
-  window.__lc.license = 15808029;
-  ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="../../cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
-</script>
-<noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-<!-- End of LiveChat code -->
-<script>
-    window.__lc = window.__lc || {};
-    window.__lc.license = 15808029;
-    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="../../cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
-</script>
-<script>
-    
-var colors = new Array(
-  [62,35,255],
-  [60,255,60],
-  [255,35,98],
-  [45,175,230],
-  [255,0,255],
-  [255,128,0]);
-
-var step = 0;
-//color table indices for: 
-// current color left
-// next color left
-// current color right
-// next color right
-var colorIndices = [0,1,2,3];
-
-//transition speed
-var gradientSpeed = 0.002;
-
-function updateGradient()
-{
-  
-  if ( $===undefined ) return;
-  
-var c0_0 = colors[colorIndices[0]];
-var c0_1 = colors[colorIndices[1]];
-var c1_0 = colors[colorIndices[2]];
-var c1_1 = colors[colorIndices[3]];
-
-var istep = 1 - step;
-var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-var color1 = "rgb("+r1+","+g1+","+b1+")";
-
-var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
-var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
-var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
-var color2 = "rgb("+r2+","+g2+","+b2+")";
-
- $('#gradient').css({
-   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
-    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-  
-  step += gradientSpeed;
-  if ( step >= 1 )
-  {
-    step %= 1;
-    colorIndices[0] = colorIndices[1];
-    colorIndices[2] = colorIndices[3];
-    
-    //pick two new target color indices
-    //do not pick the same as the current one
-    colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-    colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-    
-  }
-}
-
-setInterval(updateGradient,10);
-</script>
-<noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-
-    </body>
-
-<!-- /Chatra {/literal} -->
-    
-<!-- Mirrored from allappsreveiws.com.ng/palmpay/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 21:11:58 GMT -->
-<footer><center><!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Button Hover</title>
-  <link rel="stylesheet" href="./style.css">
-<style>
-  
-  @import url("https://fonts.googleapis.com/css?family=Mukta:700");
-* {
-  box-sizing: border-box;
-}
-*::before, *::after {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Mukta", sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  min-height: 100vh;
-  background: #f3f8fa;
-}
-
-button.learn-more {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
-  border: 0;
-  vertical-align: middle;
-  text-decoration: none;
-  background: transparent;
-  padding: 0;
-  font-size: inherit;
-  font-family: inherit;
-}
-button.learn-more {
-  width: 12rem;
-  height: auto;
-}
-button.learn-more .circle {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: relative;
-  display: block;
-  margin: 0;
-  width: 3rem;
-  height: 3rem;
-  background: #282936;
-  border-radius: 1.625rem;
-}
-button.learn-more .circle .icon {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  background: #fff;
-}
-button.learn-more .circle .icon.arrow {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  left: 0.625rem;
-  width: 1.125rem;
-  height: 0.125rem;
-  background: none;
-}
-button.learn-more .circle .icon.arrow::before {
-  position: absolute;
-  content: "";
-  top: -0.25rem;
-  right: 0.0625rem;
-  width: 0.625rem;
-  height: 0.625rem;
-  border-top: 0.125rem solid #fff;
-  border-right: 0.125rem solid #fff;
-  transform: rotate(45deg);
-}
-button.learn-more .button-text {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.75rem 0;
-  margin: 0 0 0 1.85rem;
-  color: #282936;
-  font-weight: 700;
-  line-height: 1.6;
-  text-align: center;
-  text-transform: uppercase;
-}
-button:hover .circle {
-  width: 100%;
-}
-button:hover .circle .icon.arrow {
-  background: #fff;
-  transform: translate(1rem, 0);
-}
-button:hover .button-text {
-  color: #fff;
-}
-
-
-
-  #container {
-    grid-area: main;
-    align-self: center;
-    justify-self: center;
-  }
-}
-</style>
+    /* Responsive */
+    @media (max-width: 480px) {
+      #gradient {
+        height: 160px;
+        padding: 20px 18px;
+      }
+      .header-content .avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+      }
+      .header-content .user-info h2 {
+        font-size: 17px;
+      }
+      .balance-card .balance-amount {
+        font-size: 28px;
+      }
+      .stats-row {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 6px;
+      }
+      .stat-item {
+        padding: 10px 8px;
+      }
+      .stat-item .stat-number {
+        font-size: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div id="container">
-    <a href="BTCwithdraw.html">
-  <button class="learn-more">
-    <span class="circle" aria-hidden="true">
-      <span class="icon arrow"></span>
-    </span>
-    <span class="button-text">Crypto</span>
-  </button>
-</div>
-<!-- partial -->
-  
+
+  <!-- Animated Gradient Header -->
+  <div id="gradient">
+    <div class="header-content">
+      <div class="avatar"><i class="fas fa-user"></i></div>
+      <div class="user-info">
+        <h2>Welcome Back! 👋</h2>
+        <p>Ready to start earning today</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Balance Card -->
+  <div class="balance-card">
+    <div class="balance-label">
+      <i class="fas fa-wallet"></i> Available Balance
+    </div>
+    <div class="balance-amount">
+      ₦<span id="number">7,500</span>
+    </div>
+    <div class="balance-sub">
+      <i class="fas fa-arrow-up"></i> Keep watching videos to increase your earnings
+    </div>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-number green" id="todayEarnings">+₦1,640</div>
+      <div class="stat-label">Today's Earnings</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number purple">24</div>
+      <div class="stat-label">Videos Watched</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number orange">5</div>
+      <div class="stat-label">Days Active</div>
+    </div>
+  </div>
+
+  <!-- Video Section -->
+  <div class="video-section">
+    <div class="section-title">
+      <i class="fas fa-play-circle"></i> Watch & Earn
+    </div>
+    <div class="video-wrapper">
+      <video controls preload="metadata">
+        <source src="video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-note">
+      <i class="fas fa-arrow-up"></i> The more videos you watch, the more your <span class="highlight">available balance</span> increases
+    </div>
+  </div>
+
+  <!-- Withdrawal Form -->
+  <div class="form-section">
+    <div class="form-title">
+      <i class="fas fa-arrow-down"></i> Withdraw Funds
+    </div>
+    <div class="form-card">
+      <form id="fundForm">
+        <div class="input-group">
+          <label><i class="fas fa-user"></i> Account Number</label>
+          <input type="number" id="palmpayNumber" name="palmpayNumber" placeholder="Enter account number" required>
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-user-tag"></i> Account Name</label>
+          <input type="text" id="palmpayName" name="palmpayName" placeholder="Enter account name" required>
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-university"></i> Bank Name</label>
+          <input type="text" id="palmpayCome" name="palmpayCome" placeholder="Enter bank name" required>
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-naira-sign"></i> Amount</label>
+          <input type="number" id="amount" name="amount" placeholder="Enter amount to withdraw" required>
+        </div>
+        <button type="submit" class="btn-withdraw">
+          <i class="fas fa-paper-plane"></i> Withdraw Now
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Crypto Button -->
+  <div class="crypto-section">
+    <a href="BTCwithdraw.html" class="btn-crypto">
+      <i class="fab fa-bitcoin"></i> Withdraw with Crypto
+    </a>
+  </div>
+
+  <!-- Bottom Menu -->
+  <div class="bottom-menu">
+    <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="about.html"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="contact.html" class="active"><i class="fas fa-envelope"></i><span>Contact</span></a>
+  </div>
+
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+    });
+
+    // ---------- ANIMATED GRADIENT ----------
+    var colors = new Array(
+      [62,35,255],
+      [60,255,60],
+      [255,35,98],
+      [45,175,230],
+      [255,0,255],
+      [255,128,0]
+    );
+
+    var step = 0;
+    var colorIndices = [0,1,2,3];
+    var gradientSpeed = 0.002;
+
+    function updateGradient() {
+      if ($ === undefined) return;
+      
+      var c0_0 = colors[colorIndices[0]];
+      var c0_1 = colors[colorIndices[1]];
+      var c1_0 = colors[colorIndices[2]];
+      var c1_1 = colors[colorIndices[3]];
+
+      var istep = 1 - step;
+      var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+      var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+      var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+      var color1 = "rgb("+r1+","+g1+","+b1+")";
+
+      var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+      var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+      var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+      var color2 = "rgb("+r2+","+g2+","+b2+")";
+
+      $('#gradient').css({
+        background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"
+      }).css({
+        background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"
+      });
+      
+      step += gradientSpeed;
+      if (step >= 1) {
+        step %= 1;
+        colorIndices[0] = colorIndices[1];
+        colorIndices[2] = colorIndices[3];
+        colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+        colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+      }
+    }
+
+    setInterval(updateGradient, 10);
+
+    // ---------- BALANCE AUTO-INCREASE ----------
+    const numberElement = document.getElementById('number');
+    let number = parseInt(localStorage.getItem('number')) || 5500;
+
+    function formatNumber(num) {
+      return num.toLocaleString('en-US');
+    }
+
+    function updateBalance() {
+      number += 164;
+      numberElement.textContent = formatNumber(number);
+      localStorage.setItem('number', number);
+      
+      // Update today's earnings
+      const todayEarnings = document.getElementById('todayEarnings');
+      if (todayEarnings) {
+        const earned = parseInt(localStorage.getItem('todayEarned')) || 0;
+        const newEarned = earned + 164;
+        localStorage.setItem('todayEarned', newEarned);
+        todayEarnings.textContent = '+₦' + formatNumber(newEarned);
+      }
+    }
+
+    // Update today's earnings on load
+    const todayEarnings = document.getElementById('todayEarnings');
+    const savedEarnings = parseInt(localStorage.getItem('todayEarned')) || 0;
+    if (todayEarnings) {
+      todayEarnings.textContent = '+₦' + formatNumber(savedEarnings);
+    }
+
+    // Initial display
+    numberElement.textContent = formatNumber(number);
+    
+    // Update every 2 seconds (matches original)
+    setInterval(updateBalance, 2000);
+
+    // ---------- FORM SUBMISSION ----------
+    document.getElementById('fundForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const palmpayNumber = document.getElementById('palmpayNumber').value.trim();
+      const palmpayName = document.getElementById('palmpayName').value.trim();
+      const palmpayCome = document.getElementById('palmpayCome').value.trim();
+      const amount = document.getElementById('amount').value.trim();
+
+      if (!palmpayNumber || !palmpayName || !palmpayCome || !amount) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      if (parseInt(amount) > parseInt(number)) {
+        alert('Insufficient balance! Please watch more videos to earn more.');
+        return;
+      }
+
+      // Store form data
+      localStorage.setItem('palmpayNumber', palmpayNumber);
+      localStorage.setItem('palmpayName', palmpayName);
+      localStorage.setItem('palmpayCome', palmpayCome);
+      localStorage.setItem('amount', amount);
+      localStorage.setItem('withdrawAmount', amount);
+
+      // Navigate to next page
+      window.location.href = 'next-page.html';
+    });
+
+    // ---------- BOTTOM MENU ACTIVE ----------
+    const menuItems = document.querySelectorAll('.bottom-menu a');
+    menuItems.forEach((item) => {
+      item.addEventListener('click', function() {
+        menuItems.forEach((menuItem) => {
+          menuItem.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+
+    // ---------- LIVECHAT (kept from original) ----------
+    window.__lc = window.__lc || {};
+    window.__lc.license = 15808029;
+    (function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));
+  </script>
+  <noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+
 </body>
-</html>
-</center></footer><br>
 </html>

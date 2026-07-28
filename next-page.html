@@ -1,138 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from allappsreveiws.com.ng/palmpay/next-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 21:11:58 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Payment Success · Cash Tube2025</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f0f2f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 100px;
+    }
+
+    /* Success Icon */
+    .success-icon {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      margin-bottom: 8px;
+      animation: bounceIn 0.6s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .success-icon .icon-circle {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(145deg, #22c55e, #16a34a);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      color: white;
+      box-shadow: 0 12px 40px -8px rgba(34, 197, 94, 0.4);
+    }
+
+    .success-icon h2 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-top: 12px;
+    }
+
+    .success-icon .sub-text {
+      color: #64748b;
+      font-size: 15px;
+      margin-top: 4px;
+    }
+
+    .success-icon .amount-display {
+      font-size: 36px;
+      font-weight: 800;
+      color: #7c3aed;
+      margin-top: 4px;
+    }
+
+    /* Main Card */
+    .main-card {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 24px 20px 28px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      margin-top: 8px;
+    }
+
+    .main-card .card-header {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 14px 20px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .main-card .card-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .main-card .card-header h3 i {
+      color: #7c3aed;
+      margin-right: 8px;
+    }
+
+    /* Detail Rows */
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-row .label {
+      font-size: 14px;
+      color: #94a3b8;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .detail-row .label i {
+      color: #7c3aed;
+      width: 18px;
+      font-size: 14px;
+    }
+
+    .detail-row .value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0f172a;
+      text-align: right;
+      word-break: break-word;
+      max-width: 60%;
+    }
+
+    .detail-row .value.success {
+      color: #22c55e;
+    }
+
+    .detail-row .value.uppercase {
+      text-transform: uppercase;
+    }
+
+    /* Status Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #16a34a;
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status-badge i {
+      font-size: 14px;
+    }
+
+    /* Footer Button */
+    .footer-btn {
+      width: 100%;
+      max-width: 480px;
+      margin-top: 16px;
+      padding: 0 16px;
+    }
+
+    .footer-btn .btn-home {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #7c3aed, #5b21b6);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px -6px rgba(91, 33, 182, 0.35);
+      text-decoration: none;
+    }
+
+    .footer-btn .btn-home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -8px rgba(91, 33, 182, 0.4);
+    }
+
+    .footer-btn .btn-home:active {
+      transform: scale(0.97);
+    }
+
+    .footer-btn .btn-home i {
+      font-size: 18px;
+    }
+
+    /* Bottom Menu */
+    .bottom-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 12px 10px 16px;
+      z-index: 999;
+    }
+
+    .bottom-menu a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      gap: 2px;
+      transition: 0.2s;
+    }
+
+    .bottom-menu a i {
+      font-size: 20px;
+    }
+
+    .bottom-menu a.active {
+      color: #7c3aed;
+    }
+
+    .bottom-menu a.active i {
+      background: #ede9fe;
+      padding: 6px 14px;
+      border-radius: 30px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .success-icon .icon-circle {
+        width: 72px;
+        height: 72px;
+        font-size: 34px;
+      }
+      .success-icon h2 {
+        font-size: 22px;
+      }
+      .success-icon .amount-display {
+        font-size: 28px;
+      }
+      .main-card {
+        padding: 18px 16px 22px;
+      }
+      .detail-row .label {
+        font-size: 13px;
+      }
+      .detail-row .value {
+        font-size: 13px;
+        max-width: 55%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <style>
-        
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;900&amp;display=swap');
-        /* Styles remain the same as before */
-   * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-        .up {
-            width: 98%;
-            height: 100px;
-            margin: 0 auto;
-            /* background: rgb(255, 255, 255); */
-        }
-        .up img {
-            width: 70px;
-            margin: 0 auto;
-            display: block;
-        }
-        .up p {
-            text-align: center;
-            color: rgb(54, 179, 54);
-            font-size: 20px;
-            font: 200;
-        }
-        .up h2 {
-            text-align: center;
-        }   
-        .box {
-            width: 93%;
-            height: fit-content;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 8px;  
-        }
-        body {
-            background: #f5f3f3;
-        }
-        .small {
-            width: 94%;
-            height: 60px;
-            margin: 0 auto;
-            background: #f4f3f3;
-            border-radius: 8px;  
-        }
-        .small h3 {
-            text-align: center;
-            padding-top: 19px;
-        }
-        .box p {
-            padding-left: 19px;
-            font: bold;
-        }
-        .box span {
-            float: right;
-            padding-right: 19px;
-        }
-        .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 80px;
-        }
-        .footer button {
-            width: 80%;
-            height: 45px;
-            font-size: 20px;
-            color: white;
-            margin: 0 auto;
-            display: block;
-            border: none;
-            border-radius: 20px;
-            background: #5a00b5;
 
-            }
-            a {
-                color: white;
-                text-decoration: none;
-            }
-    </style> <br> <br>
-    <div class="up">
-        <img src="img/smallcheck.png" alt="">
-        <p>Payment Success!</p>
-        <h2 >₦<span id="amountDisplay"></span> </h2>
-
+  <!-- Success Icon -->
+  <div class="success-icon">
+    <div class="icon-circle">
+      <i class="fas fa-check"></i>
     </div>
-<br> <br><br>
-    <div class="box"> <br>  
-        <div class="small">
-            <h3>Payment Details</h3>
-        </div> <br> <br>
+    <h2>Payment Success! 🎉</h2>
+    <p class="sub-text">Your withdrawal has been processed successfully</p>
+    <div class="amount-display">₦<span id="amountDisplay">0</span></div>
+  </div>
 
-        <p>Ref Number <span id="randomString"></span></p> <br>
-        <p>Payment Time <span id="datetime"></span></p> <br>
-        <p>Account Name <span style="text-transform: uppercase;" id="palmpayNameDisplay"></span></p> <br>
-        <p>Account Number <span id="palmpayNumberDisplay"></span></p> <br>
-        <p>Bank Name <span style="text-transform: uppercase;" id="palmpayComeDisplay"></span></p> <br>
-        <p>From <span >Cash Tube</span></p> <br>
-        <p>Payment status <span>Success</span></p> <br>
-      </div> <br> <br> <br> <br>
-      <div class="footer">
-        <button><a href="home.html">Back to Home</a></button>
-    
+  <!-- Main Card -->
+  <div class="main-card">
+    <div class="card-header">
+      <h3><i class="fas fa-receipt"></i> Payment Details</h3>
+    </div>
 
-<script>
-    
+    <div class="detail-row">
+      <span class="label"><i class="fas fa-hashtag"></i> Ref Number</span>
+      <span class="value" id="randomString">—</span>
+    </div>
 
-</script>
-<script src="app.js"></script>
+    <div class="detail-row">
+      <span class="label"><i class="fas fa-clock"></i> Payment Time</span>
+      <span class="value" id="datetime">—</span>
+    </div>
 
-<!-- Start of LiveChat (www.livechat.com) code -->
-<script>
+    <div class="detail-row">
+      <span class="label"><i class="fas fa-user"></i> Account Name</span>
+      <span class="value uppercase" id="palmpayNameDisplay">—</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="label"><i class="fas fa-credit-card"></i> Account Number</span>
+      <span class="value" id="palmpayNumberDisplay">—</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="label"><i class="fas fa-university"></i> Bank Name</span>
+      <span class="value uppercase" id="palmpayComeDisplay">—</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="label"><i class="fas fa-arrow-right"></i> From</span>
+      <span class="value" style="color: #7c3aed; font-weight: 700;">Cash Tube2025</span>
+    </div>
+
+    <div class="detail-row" style="border-bottom: none; padding-bottom: 4px;">
+      <span class="label"><i class="fas fa-check-circle"></i> Payment Status</span>
+      <span class="value">
+        <span class="status-badge">
+          <i class="fas fa-check-circle"></i> Success
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Footer Button -->
+  <div class="footer-btn">
+    <a href="home.html" class="btn-home">
+      <i class="fas fa-home"></i> Back to Home
+    </a>
+  </div>
+
+  <!-- Bottom Menu -->
+  <div class="bottom-menu">
+    <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="about.html"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="contact.html" class="active"><i class="fas fa-envelope"></i><span>Contact</span></a>
+  </div>
+
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+    });
+
+    // ---------- LOAD DATA FROM localStorage ----------
+    function loadData() {
+      // Amount
+      const amount = localStorage.getItem('amount') || '0';
+      document.getElementById('amountDisplay').textContent = amount;
+
+      // Account Name
+      const palmpayName = localStorage.getItem('palmpayName') || '—';
+      document.getElementById('palmpayNameDisplay').textContent = palmpayName;
+
+      // Account Number
+      const palmpayNumber = localStorage.getItem('palmpayNumber') || '—';
+      document.getElementById('palmpayNumberDisplay').textContent = palmpayNumber;
+
+      // Bank Name
+      const palmpayCome = localStorage.getItem('palmpayCome') || '—';
+      document.getElementById('palmpayComeDisplay').textContent = palmpayCome;
+
+      // Generate random reference number
+      const refNumber = 'CT-' + Date.now().toString().slice(-8) + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+      document.getElementById('randomString').textContent = refNumber;
+
+      // Current date and time
+      const now = new Date();
+      const dateTime = now.toLocaleString('en-NG', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      });
+      document.getElementById('datetime').textContent = dateTime;
+    }
+
+    // Run on load
+    loadData();
+
+    // ---------- BOTTOM MENU ACTIVE ----------
+    const menuItems = document.querySelectorAll('.bottom-menu a');
+    menuItems.forEach((item) => {
+      item.addEventListener('click', function() {
+        menuItems.forEach((menuItem) => {
+          menuItem.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+
+    // ---------- LIVECHAT (kept from original) ----------
     window.__lc = window.__lc || {};
     window.__lc.license = 15808029;
-    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="../../cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
-</script>
-<noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-<!-- End of LiveChat code -->
-
+    (function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));
+  </script>
+  <noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
 
 </body>
-
-</script>
-<!-- /Chatra {/literal} -->
-
-<!-- Mirrored from allappsreveiws.com.ng/palmpay/next-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 21:11:59 GMT -->
 </html>

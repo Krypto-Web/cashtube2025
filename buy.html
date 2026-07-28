@@ -7,8 +7,6 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <!-- SweetAlert2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     * {
       margin: 0;
@@ -318,7 +316,6 @@
           <span>₦10,010</span>
           <i class="fas fa-check-circle"></i>
         </div>
-        <!-- Hidden input to preserve original behavior -->
         <input type="hidden" name="amount" value="₦10,010">
       </div>
 
@@ -352,57 +349,25 @@
       event.preventDefault();
     });
 
-    // Form validation with SweetAlert2 before submitting to indax.html
+    // Simple validation - just check if fields are filled, then submit normally
     document.getElementById('buyForm').addEventListener('submit', function(e) {
       const name = document.getElementById('name').value.trim();
       const number = document.getElementById('number').value.trim();
 
       if (!name || !number) {
         e.preventDefault();
-        Swal.fire({
-          icon: 'warning',
-          title: 'Missing Info',
-          text: 'Please fill in all fields before proceeding.',
-          confirmButtonColor: '#7c3aed',
-        });
+        alert('Please fill in all fields.');
         return;
       }
 
       if (number.length < 10) {
         e.preventDefault();
-        Swal.fire({
-          icon: 'warning',
-          title: 'Invalid Number',
-          text: 'Please enter a valid phone number (10+ digits).',
-          confirmButtonColor: '#7c3aed',
-        });
+        alert('Please enter a valid phone number (10+ digits).');
         return;
       }
 
-      // Show payment processing popup before submitting
-      e.preventDefault();
-      
-      Swal.fire({
-        title: 'Processing Payment...',
-        text: 'Please wait while we verify your payment.',
-        allowOutsideClick: false,
-        didOpen: () => {
-          Swal.showLoading();
-        }
-      });
-
-      setTimeout(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Payment Successful! 🎉',
-          text: 'Your passcode will be reviewed immediately.',
-          confirmButtonColor: '#7c3aed',
-          confirmButtonText: 'Continue',
-        }).then(() => {
-          // Submit the form to indax.html as originally intended
-          document.getElementById('buyForm').submit();
-        });
-      }, 2500);
+      // Form submits normally to indax.html
+      // No popup - just goes straight to indax.html like the original
     });
 
     // ---------- LiveChat Code (kept from original) ----------

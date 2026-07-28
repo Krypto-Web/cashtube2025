@@ -1,450 +1,667 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from allappsreveiws.com.ng/flupayment/banktf.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 22:07:01 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="fontawesome-free-6.2.0-web/css/all.css">
-    <script src="js.js"></script>
-    <style>
-        
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,900&amp;display=swap');
-        * {
-            padding: 0;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Bank Transfer · Cash Tube2025</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-        .top {
-           width: 100%;
-           height: 39px; 
-           margin-top: 30px;
-           background: rgb(208, 206, 206);
-        }
-        .top p {
-            padding-top: 6px;
-            padding-left: 20px;
-        }
+    body {
+      background: #f0f2f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 90px 0;
+    }
 
-        .amount {
-            width: 100%;
-            height: 120px;
-            background: #ffffff;
-        }
-        .amount h3  {
-            float: right;
-            position: relative;
-            bottom: -20px;
-            padding-right: 12px;
-        }
-        .amount  p {
-            float: right;
-            padding-right: 12px;
-        }
-        .amount img {
-            width: 100px;
-            position: relative;
-            top: -36px;
-        }
-      .tp  p {
-            text-align: center;
-        }
-        .box {
-            width: 95%;
-            height: fit-content;
-            margin: 0 auto;
-            border: 1px solid grey;
-            background: #f5f2f2;
-        }
-        .box h3, p {
-            padding-left: 15px;
-        }
+    /* Back Link */
+    .back-link {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .copy-button {
-            float: right;
-            margin-right: 15px;
-            background-color: orange;
-            color: white;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            top: -20px;
-            width: 50px;
-        }
-        .btn button {
-            width: 89%;
-            height: 39px;
-            margin:  0 auto;
-            display: block;
-            border: none;
-            background: orange;
-        }
+    .back-link a {
+      color: #4b5563;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
 
-        /* Additional styles for the spinner and transfer complete message */
-        #spinner, #transferCompleteMessage {
-            text-align: center;
-            font-size: 20px;
-            display: none;
-            margin-top: 20px;
-        }
-        /* CSS Spinner animation */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+    .back-link a:hover {
+      color: #7c3aed;
+    }
 
-.spinner {
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid orange;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin .7s linear infinite;
-    margin: 0 auto;
-    margin-top: 20px;
-}
+    .back-link .cancel {
+      color: #dc2626;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+    }
 
+    .back-link .cancel:hover {
+      color: #b91c1c;
+    }
 
-.bc {
-    width: 90%;
-    height: 50px;
-    margin: 0 auto;
-    border: 1px solid rgb(233, 232, 232);
-    background: #f2f2f2;
-}
-.bb i {
-    width: 25px;
-    height: 25  px;
-    clip-path: circle();
-    /* background-color: green; */
-    color: green;
-    float: right;
-    position: relative;
-    left: -20px;
-    top: 12px;
-}
-.spinners {
-            width: 20px;
-            height: 20px;
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-top: 8px solid orange;
-            border-radius: 50%;
-            animation: spin .2s linear infinite;
-            margin: 50px auto;
-            float: right;
-            position: relative;
-            top: -39px;
+    /* Top Header */
+    .top-header {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px 20px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: white;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
 
-        }
+    .top-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @media screen and (max-width: 768px) {
-            .top {
-           width: 100%;
-           height: 39px; 
-           margin-top: 30px;
-           background: rgb(208, 206, 206);
-        }
-        .top p {
-            padding-top: 6px;
-            padding-left: 20px;
-        }
+    .top-header h2 i {
+      color: #7c3aed;
+    }
 
-        .amount {
-            width: 100%;
-            height: 120px;
-            background: #ffffff;
-        }
-        .amount h3  {
-            float: right;
-            position: relative;
-            bottom: -20px;
-            padding-right: 12px;
-            font-size: 15px;
-        }
-        .amount  p {
-            float: right;
-            padding-right: 12px;
-            font-size: 18px;
-        }
-        .amount img {
-            width: 80px;
-            position: relative;
-            top: -45px;
-        }
-      .tp  p {
-            text-align: center;
-            font-size: 15px;
-        }
-        .box {
-            width: 90%;
-            height: fit-content;
-            margin: 0 auto;
-            border: 1px solid grey;
-            background: #f5f2f2;
-        }
-        .box h3, p {
-            padding-left: 15px;
-            font-size: 13px;
-        }
+    .top-header .badge {
+      background: #fef3c7;
+      color: #d97706;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 600;
+    }
 
-        .copy-button {
-            float: right;
-            margin-right: 15px;
-            background-color: orange;
-            color: white;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            top: -20px;
-            width: 40px;
-        }
-        .btn button {
-            width: 89%;
-            height: 39px;
-            margin:  0 auto;
-            display: block;
-            border: none;
-            background: orange;
-        }
+    /* Amount Section */
+    .amount-section {
+      width: 100%;
+      max-width: 480px;
+      padding: 20px 20px 12px;
+      background: white;
+      margin-top: 8px;
+      border-radius: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        /* Additional styles for the spinner and transfer complete message */
-        #spinner, #transferCompleteMessage {
-            text-align: center;
-            font-size: 20px;
-            display: none;
-            margin-top: 20px;
-        }
-        /* CSS Spinner animation */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+    .amount-section .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-.spinner {
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid orange;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin .7s linear infinite;
-    margin: 0 auto;
-    margin-top: 20px;
-}
+    .amount-section .logo-area img {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      padding: 8px;
+    }
 
+    .amount-section .amount-info h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+    }
 
-.bc {
-    width: 90%;
-    height: 50px;
-    margin: 0 auto;
-    border: 1px solid rgb(233, 232, 232);
-    background: #f2f2f2;
-}
-.bb i {
-    width: 25px;
-    height: 25  px;
-    clip-path: circle();
-    /* background-color: green; */
-    color: green;
-    float: right;
-    position: relative;
-    left: -20px;
-    top: 12px;
-}
-.spinners {
-            width: 20px;
-            height: 20px;
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-top: 8px solid orange;
-            border-radius: 50%;
-            animation: spin .2s linear infinite;
-            margin: 50px auto;
-            float: right;
-            position: relative;
-            top: -39px;
+    .amount-section .amount-info h3 span {
+      color: #7c3aed;
+    }
 
-        }
+    .amount-section .amount-info p {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        }
-        h4{
-            color: orange;
-        }
+    .amount-section .status {
+      background: #dcfce7;
+      color: #16a34a;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 600;
+    }
 
-        .password {
-    width: 300px;
-    margin: 15px auto;
-    position: relative;
-}
-#password-input {
-    width: 100%;
-    padding: 5px 0;
-    height: 30px;
-    line-height: 40px;
-    text-indent: 10px;
-    margin: 0 0 15px 0;
-    border-radius: 5px;
-    border: 1px solid #999;
-    font-size: 18px;
-}
-.password-control {
-    position: absolute;
-    top: 11px;
-    right: 6px;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
-}
-.password-control.view {
-    background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
-}
+    /* Instruction */
+    .instruction {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px 20px;
+      text-align: center;
+      color: #475569;
+      font-size: 14px;
+      font-weight: 500;
+    }
 
-    </style>
+    .instruction i {
+      color: #7c3aed;
+      margin-right: 6px;
+    }
+
+    /* Bank Details Box */
+    .bank-details {
+      width: 100%;
+      max-width: 480px;
+      background: white;
+      border-radius: 24px;
+      padding: 20px 20px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid #f1f5f9;
+      margin-bottom: 12px;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-row .label {
+      font-size: 13px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .detail-row .value {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .detail-row .value .copy-btn {
+      background: #f1f5f9;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .detail-row .value .copy-btn:hover {
+      background: #ede9fe;
+      color: #7c3aed;
+    }
+
+    .detail-row .value .copy-btn i {
+      font-size: 12px;
+    }
+
+    .detail-row .value .bank-badge {
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 2px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Info Text */
+    .info-text {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 20px 16px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .info-text i {
+      color: #f59e0b;
+      margin-right: 6px;
+    }
+
+    /* Button */
+    .btn-container {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 20px;
+    }
+
+    .btn-payment {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #f59e0b, #d97706);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px -6px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-payment:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -8px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn-payment:active {
+      transform: scale(0.97);
+    }
+
+    .btn-payment:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Spinner / Processing */
+    .processing-box {
+      width: 100%;
+      max-width: 480px;
+      display: none;
+      padding: 20px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      margin-top: 8px;
+    }
+
+    .processing-box .spinner {
+      border: 4px solid #f3f4f6;
+      border-top: 4px solid #f59e0b;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .processing-box h4 {
+      text-align: center;
+      font-size: 16px;
+      color: #0f172a;
+    }
+
+    .processing-box p {
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+
+    .status-row .status-label {
+      font-size: 13px;
+      color: #475569;
+    }
+
+    .status-row .status-icon {
+      color: #22c55e;
+      font-size: 18px;
+    }
+
+    .status-row .status-spinner {
+      width: 18px;
+      height: 18px;
+      border: 3px solid #e2e8f0;
+      border-top: 3px solid #f59e0b;
+      border-radius: 50%;
+      animation: spin 0.5s linear infinite;
+    }
+
+    /* Payment Failed */
+    .failed-box {
+      width: 100%;
+      max-width: 480px;
+      display: none;
+      padding: 24px 20px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .failed-box .fail-icon {
+      font-size: 56px;
+      color: #dc2626;
+      margin-bottom: 8px;
+    }
+
+    .failed-box h4 {
+      font-size: 20px;
+      color: #dc2626;
+      font-weight: 800;
+    }
+
+    .failed-box p {
+      color: #475569;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .failed-box .password-field {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 2px solid #fecaca;
+    }
+
+    .failed-box .password-field input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: #dc2626;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    .failed-box .password-field .toggle-eye {
+      cursor: pointer;
+      color: #94a3b8;
+      font-size: 18px;
+    }
+
+    .failed-box .email-link {
+      color: #7c3aed;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .failed-box .email-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Bottom Menu */
+    .bottom-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 12px 10px 16px;
+      z-index: 999;
+    }
+
+    .bottom-menu a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      gap: 2px;
+      transition: 0.2s;
+    }
+
+    .bottom-menu a i {
+      font-size: 20px;
+    }
+
+    .bottom-menu a.active {
+      color: #7c3aed;
+    }
+
+    .bottom-menu a.active i {
+      background: #ede9fe;
+      padding: 6px 14px;
+      border-radius: 30px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .amount-section .amount-info h3 {
+        font-size: 18px;
+      }
+      .detail-row .value {
+        font-size: 13px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .detail-row .value .copy-btn {
+        font-size: 10px;
+        padding: 3px 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="top">
-        <p>Bank Transfer <span style="float: right; padding-right: 10px; color: red;">Cancel</span></p>
+
+  <!-- Back Link -->
+  <div class="back-link">
+    <a href="indax.html"><i class="fas fa-arrow-left"></i> Back</a>
+    <a href="index.html" class="cancel"><i class="fas fa-times"></i> Cancel</a>
+  </div>
+
+  <!-- Top Header -->
+  <div class="top-header">
+    <h2><i class="fas fa-university"></i> Bank Transfer</h2>
+    <span class="badge"><i class="fas fa-clock"></i> Pending</span>
+  </div>
+
+  <!-- Amount Section -->
+  <div class="amount-section">
+    <div class="logo-area">
+      <img src="img/fl%20logo.png" alt="CashTube Logo">
+      <div class="amount-info">
+        <h3>NGN <span>10,010</span></h3>
+        <p id="emailDisplay">Email: —</p>
+      </div>
     </div>
-    <div class="amount">
+    <span class="status"><i class="fas fa-check-circle"></i> Ready</span>
+  </div>
 
-        
-        <h3>NGN <span>10,010</span> <span style="width: 100px; height: 13px; background: #000;"></span></h3>
-        <br> <br>
-        <P style="font-size: 11px;" id="email"></P>
-        <img src="img/fl%20logo.png" alt="">  <br> <br>
+  <!-- Instruction -->
+  <div class="instruction">
+    <i class="fas fa-mobile-alt"></i> Proceed to your bank app to complete this transfer
+  </div>
+
+  <!-- Bank Details -->
+  <div class="bank-details" id="bankDetails">
+    <div class="detail-row">
+      <span class="label">Amount</span>
+      <span class="value">NGN 10,010 <button class="copy-btn" onclick="copyText('amountToCopy')"><i class="fas fa-copy"></i> Copy</button></span>
     </div>
-    <div class="tp">
-    <p >Proceed to your bank app to complete this Transfer 
-        
-        </p>
-    </div> <br>
-    <div id="spinner" style="display: none;">
-        <div class="spinner" style="font-size: 13px;"></div>
-       <p> Wait while we confirm your payment... </p><br> <br>
-
-        <div class="bc">
-          <p style="float: left; font-size: 13px; padding-top: 12px;"> Payment Made <div class="bb"><i class="fa-solid fa-circle-check"></i></div></p>
-          
-        </div> <br>
-        <div class="bc">
-            <p style="float: left; font-size: 13px; padding-top: 12px;">Confirming Payment <div class="spinners"></div></p>
-            
-          </div>
+    <div class="detail-row">
+      <span class="label">Account Number</span>
+      <span class="value"><span id="accountNumberToCopy">1287920885</span> <button class="copy-btn" onclick="copyText('accountNumberToCopy')"><i class="fas fa-copy"></i> Copy</button></span>
     </div>
-    
-
-    <div id="transferCompleteMessage" style="display: none;"><img src="img/bad.png">
-       <p style="font-size: 13px;"><h4>PAYMENT NOT CONFIRMED!</h4> </p><br><p>Your payment wasn't confirmed. contact us on email for help  
-       </p><p>
-           <div class="password">
-    <input type="password" id="password-input" placeholder="Введите пароль" name="password" value="FEE NOT CONFIRMED" readonly>
-    <a href="#" class="password-control"></a>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-       </p> <a style="font-size: 13px;" href="mailto:payperclicck@gmail.com"></a> <br>
-
-        
+    <div class="detail-row">
+      <span class="label">Bank Name</span>
+      <span class="value"><span class="bank-badge">PAGA</span></span>
     </div>
-    <div class="box"> <br>
+    <div class="detail-row">
+      <span class="label">Account Name</span>
+      <span class="value">CASHTUBE AGENT-MOSES</span>
+    </div>
+  </div>
 
-        
-        <p>Amount</p>
-        <h3 >NGN 10,010  <span id="amountToCopy"NULL</span> </h3>
-        <button class="copy-button" onclick="copyText('amountToCopy')">Copy</button>
-        <br>
+  <!-- Info Text -->
+  <div class="info-text">
+    <i class="fas fa-info-circle"></i> Pay to this specific account and get your access code
+  </div>
 
-        <p>Account Number</p>
-        <h3 id="accountNumberToCopy">1287920885</h3>
-        <button class="copy-button" onclick="copyText('accountNumberToCopy')">Copy</button>
-        <br>
+  <!-- Button -->
+  <div class="btn-container" id="buttonContainer">
+    <button class="btn-payment" id="transferButton" onclick="startTransfer()">
+      <i class="fas fa-check-circle"></i> I have made this bank payment
+    </button>
+  </div>
 
-        <p>Bank Name</p>
-        <h3>PAGA</h3></h3> <br>
+  <!-- Processing Box -->
+  <div class="processing-box" id="processingBox">
+    <div class="spinner"></div>
+    <h4>Confirming Your Payment</h4>
+    <p>Please wait while we verify your transaction...</p>
 
-        
+    <div class="status-row">
+      <span class="status-label"><i class="fas fa-check-circle" style="color: #22c55e;"></i> Payment Made</span>
+      <span class="status-icon"><i class="fas fa-check-circle"></i></span>
+    </div>
+    <div class="status-row">
+      <span class="status-label"><i class="fas fa-spinner fa-spin" style="color: #f59e0b;"></i> Confirming Payment</span>
+      <span class="status-spinner"></span>
+    </div>
+  </div>
 
-        <p>Account Name</p>
-        <h3>CASHTUBE AGENT-MOSES</h3> <br> <hr> <br>
-        <p>Pay to this specific account and get your access code </p> <br>
-        <div class="btn">
-            <button id="transferButton" onclick="startTransfer()">I have made this bank payment</button> <br>
-        </div>
-    
-    </div> <br>
-   
-    
-    <script>
-       
-        function copyText(elementId) {
-            var textToCopy = document.getElementById(elementId).textContent;
-            var dummyElement = document.createElement("textarea");
-            document.body.appendChild(dummyElement);
-            dummyElement.value = textToCopy;
-            dummyElement.select();
-            document.execCommand("copy");
-            document.body.removeChild(dummyElement);
-            alert("Copied: " + textToCopy);
-        }
+  <!-- Failed Box -->
+  <div class="failed-box" id="failedBox">
+    <div class="fail-icon"><i class="fas fa-times-circle"></i></div>
+    <h4>PAYMENT NOT CONFIRMED!</h4>
+    <p>Your payment wasn't confirmed. Contact us on email for help.</p>
+    <div class="password-field">
+      <input type="password" id="passwordInput" value="FEE NOT CONFIRMED" readonly>
+      <span class="toggle-eye" onclick="togglePassword()"><i class="fas fa-eye"></i></span>
+    </div>
+    <a href="mailto:payperclicck@gmail.com" class="email-link"><i class="fas fa-envelope"></i> payperclicck@gmail.com</a>
+  </div>
 
-        function startTransfer() {
-            // Hide the content in the .box
-            const box = document.querySelector('.box');
-            box.style.display = 'none';
+  <!-- Bottom Menu -->
+  <div class="bottom-menu">
+    <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="about.html"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="contact.html" class="active"><i class="fas fa-envelope"></i><span>Contact</span></a>
+  </div>
 
-            // Show the spinner
-            const spinner = document.getElementById('spinner');
-            spinner.style.display = 'block';
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+    });
 
-            // Set a timer to display "Transfer Successful" after 5 seconds
-            setTimeout(function () {
-                spinner.style.display = 'none';
-                const transferCompleteMessage = document.getElementById('transferCompleteMessage');
-                transferCompleteMessage.style.display = 'block';
-            }, 15000);
-        }
+    // Copy function
+    function copyText(elementId) {
+      var textToCopy = document.getElementById(elementId).textContent;
+      var dummyElement = document.createElement("textarea");
+      document.body.appendChild(dummyElement);
+      dummyElement.value = textToCopy;
+      dummyElement.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummyElement);
+      alert("Copied: " + textToCopy);
+    }
 
-        // Function to parse query parameters from the URL
-        function parseQueryParameters() {
-            const queryParams = new URLSearchParams(window.location.search);
-            const fullName = queryParams.get('fullName');
-            const email = queryParams.get('email');
-            return { fullName, email };
-        }
+    // Parse query parameters
+    function parseQueryParameters() {
+      const queryParams = new URLSearchParams(window.location.search);
+      const fullName = queryParams.get('fullName');
+      const email = queryParams.get('email');
+      return { fullName, email };
+    }
 
-        // Retrieve and display form data
-        const { fullName, email } = parseQueryParameters();
-        document.getElementById('email').textContent += email;
-   
-    </script>
-    <script>
-        $('body').on('click', '.password-control', function(){
-    if ($('#password-input').attr('type') == 'password'){
+    // Display email
+    const { fullName, email } = parseQueryParameters();
+    if (email) {
+      document.getElementById('emailDisplay').textContent = 'Email: ' + email;
+    }
+
+    // Start transfer - original functionality preserved
+    function startTransfer() {
+      // Hide bank details and button
+      document.getElementById('bankDetails').style.display = 'none';
+      document.getElementById('buttonContainer').style.display = 'none';
+      document.querySelector('.info-text').style.display = 'none';
+      document.querySelector('.instruction').style.display = 'none';
+
+      // Show processing box
+      document.getElementById('processingBox').style.display = 'block';
+
+      // Wait 15 seconds then show failed (original behavior)
+      setTimeout(function() {
+        document.getElementById('processingBox').style.display = 'none';
+        document.getElementById('failedBox').style.display = 'block';
+      }, 15000);
+    }
+
+    // Toggle password visibility
+    function togglePassword() {
+      const input = document.getElementById('passwordInput');
+      const icon = document.querySelector('.toggle-eye i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fas fa-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'fas fa-eye';
+      }
+    }
+
+    // Original jQuery password toggle (kept for compatibility)
+    $('body').on('click', '.password-control', function(){
+      if ($('#password-input').attr('type') == 'password'){
         $(this).addClass('view');
         $('#password-input').attr('type', 'text');
-    } else {
+      } else {
         $(this).removeClass('view');
         $('#password-input').attr('type', 'password');
-    }
-    return false;
-});
-    </script>
+      }
+      return false;
+    });
+  </script>
+
 </body>
-
-<!-- Mirrored from allappsreveiws.com.ng/flupayment/banktf.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 22:07:03 GMT -->
 </html>
-
-
-
-
-
-

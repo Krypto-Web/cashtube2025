@@ -531,9 +531,9 @@
   <div class="side-menu" id="sideMenu">
     <button class="close-btn" id="closeMenuBtn"><i class="fas fa-times"></i></button>
     <ul>
-      <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-      <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
     </ul>
   </div>
 
@@ -582,14 +582,14 @@
 
     <div class="footer-links">
       <span><i class="far fa-clock"></i> Session active</span>
-      <a href="#" id="forgotLink"><i class="fas fa-key"></i> Forgot code?</a>
+      <a href="contact.html" id="forgotLink"><i class="fas fa-key"></i> Forgot code?</a>
     </div>
   </div>
 
   <!-- EXTRA ACTIONS -->
   <div class="extra-actions">
-    <a href="#" class="btn btn-primary"><i class="fab fa-bitcoin"></i> SignUp with Crypto</a>
-    <a href="#" class="btn"><i class="fas fa-phone-alt"></i> Other Method</a>
+    <a href="crypto.html" class="btn btn-primary"><i class="fab fa-bitcoin"></i> SignUp with Crypto</a>
+    <a href="buy.html" class="btn"><i class="fas fa-phone-alt"></i> Buy Passcode</a>
   </div>
 
   <!-- WELCOME POPUP -->
@@ -680,7 +680,7 @@
             icon: 'error',
             title: 'Oops...',
             text: 'Invalid passcode. Try again.',
-            footer: '<a href="#" style="color:#6b21a5;">Buy Passcode?</a>',
+            footer: '<a href="buy.html" style="color:#6b21a5;">Buy Passcode?</a>',
             confirmButtonColor: '#6b21a5',
           });
           passInput.value = '';
@@ -701,31 +701,18 @@
       // Also allow press on the lock icon (quick login)
       document.querySelector('.code-display i:last-child').addEventListener('click', validateAndRedirect);
 
-      // ---------- SIGNUP (demo) ----------
+      // ---------- SIGNUP (redirects to buy page) ----------
       signupBtn.addEventListener('click', function() {
-        Swal.fire({
-          icon: 'info',
-          title: 'Sign Up',
-          text: 'Create your account & get your unique code!',
-          confirmButtonColor: '#6b21a5',
-          confirmButtonText: 'Start now'
-        });
+        window.location.href = 'buy.html';
       });
 
-      // ---------- FORGOT (leads to contact) ----------
+      // ---------- FORGOT (redirects to contact) ----------
       document.getElementById('forgotLink').addEventListener('click', function(e) {
         e.preventDefault();
-        // Close side menu if open, then show contact info
         if (sideMenu.classList.contains('open')) {
           toggleMenu(false);
         }
-        Swal.fire({
-          icon: 'info',
-          title: 'Contact Support',
-          text: '📧 support@cashtube2025.com\n📞 +234 800 123 4567',
-          confirmButtonColor: '#6b21a5',
-          confirmButtonText: 'Contact us',
-        });
+        window.location.href = 'contact.html';
       });
 
       // ---------- SIDE MENU ----------

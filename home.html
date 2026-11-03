@@ -4,462 +4,132 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Dashboard · Cash Tube2025</title>
-  <!-- Font Awesome -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237c3aed'/><text x='16' y='23' font-size='16' text-anchor='middle' fill='white' font-family='Georgia,serif'>₦</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: #f0f2f8; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0 0 90px 0; }
 
-    body {
-      background: #f0f2f8;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 0 90px 0;
-    }
+    /* HEADER — same as before */
+    #gradient { width: 100%; max-width: 480px; height: 160px; border-radius: 0 0 40px 40px; padding: 30px 24px 20px; display: flex; flex-direction: column; justify-content: center; }
+    .header-content { display: flex; align-items: center; gap: 14px; }
+    .header-content .avatar { width: 56px; height: 56px; background: rgba(255,255,255,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: white; border: 2px solid rgba(255,255,255,.3); }
+    .header-content .user-info h2 { font-size: 18px; font-weight: 700; color: white; }
+    .header-content .user-info p { font-size: 13px; color: rgba(255,255,255,.8); }
 
-    /* Animated Gradient Header */
-    #gradient {
-      width: 100%;
-      max-width: 480px;
-      height: 180px;
-      border-radius: 0 0 40px 40px;
-      padding: 30px 24px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+    /* BALANCE CARD — same style as before */
+    .balance-card { width: 100%; max-width: 480px; margin: -30px 16px 16px; padding: 24px 20px; background: #fff; border-radius: 24px; box-shadow: 0 8px 30px rgba(0,0,0,.08); position: relative; z-index: 10; }
+    .balance-card .balance-label { font-size: 14px; color: #94a3b8; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+    .balance-card .balance-label i { color: #22c55e; }
+    .balance-card .balance-amount { font-size: 36px; font-weight: 800; color: #0f172a; margin-top: 4px; }
+    .balance-card .balance-amount span { color: #7c3aed; }
+    .balance-card .balance-sub { font-size: 13px; color: #94a3b8; margin-top: 4px; }
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+    /* STATS — same as before */
+    .stats-row { width: 100%; max-width: 480px; padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .stat-item { background: white; border-radius: 16px; padding: 14px 12px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,.03); }
+    .stat-item .stat-number { font-size: 18px; font-weight: 800; color: #0f172a; }
+    .stat-item .stat-number.green { color: #22c55e; }
+    .stat-item .stat-number.purple { color: #7c3aed; }
+    .stat-item .stat-number.orange { color: #f59e0b; }
+    .stat-item .stat-label { font-size: 11px; color: #94a3b8; font-weight: 500; margin-top: 2px; }
 
-    .header-content .avatar {
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-    }
+    /* SECTION TITLE */
+    .section-title { width: 100%; max-width: 480px; padding: 0 16px; font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .section-title i { color: #7c3aed; }
 
-    .header-content .user-info h2 {
-      font-size: 20px;
-      font-weight: 700;
-      color: white;
-    }
+    /* WARNING BANNER */
+    .warn-banner { width: 100%; max-width: 480px; margin: 0 16px 14px; background: #FEE2E2; border: 1px solid #FECACA; border-radius: 14px; padding: 12px 16px; display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #991B1B; line-height: 1.5; }
+    .warn-banner i { color: #DC2626; margin-top: 2px; }
 
-    .header-content .user-info p {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.8);
-    }
+    /* FILTERS */
+    .filter-bar { width: 100%; max-width: 480px; padding: 0 16px; display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .fpill { padding: .45rem 1rem; border-radius: 50px; font-size: .78rem; font-weight: 700; border: 1.5px solid #e2e8f0; background: #fff; color: #475569; transition: .15s; cursor: pointer; }
+    .fpill:hover { border-color: #7c3aed; color: #6b21a5; }
+    .fpill.active { background: #0f172a; color: #fff; border-color: #0f172a; }
 
-    /* Balance Card */
-    .balance-card {
-      width: 100%;
-      max-width: 480px;
-      margin: -30px 16px 16px;
-      padding: 24px 20px;
-      background: #ffffff;
-      border-radius: 24px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      position: relative;
-      z-index: 10;
-    }
+    /* AD GRID */
+    #adGrid { width: 100%; max-width: 480px; padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 420px) { #adGrid { grid-template-columns: 1fr; } }
+    .ad-card { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: .15s; }
+    .ad-card:hover { border-color: #7c3aed; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,.08); }
+    .ad-card.done { opacity: .55; }
+    .ad-card.active-ad { border-color: #f59e0b; box-shadow: 0 0 0 3px #FEF3C7; }
+    .ad-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px 8px; }
+    .ad-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: #ede9fe; flex-shrink: 0; }
+    .ad-name { font-weight: 700; font-size: 14px; color: #0f172a; }
+    .ad-desc { font-size: 11px; color: #94a3b8; line-height: 1.35; }
+    .ad-body { padding: 0 14px 8px; display: flex; align-items: center; justify-content: space-between; }
+    .ad-reward { font-weight: 700; font-size: 16px; color: #6b21a5; }
+    .ad-timer { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+    .ad-foot { padding: 10px 14px; border-top: 1px solid #f1f5f9; background: #f8fafc; }
+    .waiting-overlay { font-size: 12px; color: #d97706; font-weight: 600; text-align: center; line-height: 1.4; }
+    .done-label { display: flex; align-items: center; gap: 6px; color: #22c55e; font-size: 12px; font-weight: 600; }
 
-    .balance-card .balance-label {
-      font-size: 14px;
-      color: #94a3b8;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .vbtn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 10px; border: none; border-radius: 12px; background: linear-gradient(145deg, #7c3aed, #5b21b6); color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; transition: .15s; }
+    .vbtn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px -4px rgba(91,33,182,.35); }
+    .vbtn:disabled { opacity: .5; pointer-events: none; }
 
-    .balance-card .balance-label i {
-      color: #22c55e;
-    }
+    .empty-state { text-align: center; padding: 2.5rem 1rem; grid-column: 1/-1; }
+    .empty-state i { font-size: 2rem; color: #94a3b8; margin-bottom: 8px; }
+    .empty-state p { font-size: 14px; color: #94a3b8; }
 
-    .balance-card .balance-amount {
-      font-size: 36px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-top: 4px;
-    }
+    /* BOTTOM NAV — same as before */
+    .bottom-menu { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(0,0,0,.05); display: flex; justify-content: space-around; align-items: center; padding: 12px 10px 16px; z-index: 999; }
+    .bottom-menu a { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 11px; font-weight: 600; gap: 2px; transition: .2s; }
+    .bottom-menu a i { font-size: 20px; }
+    .bottom-menu a.active { color: #7c3aed; }
+    .bottom-menu a.active i { background: #ede9fe; padding: 6px 14px; border-radius: 30px; }
 
-    .balance-card .balance-amount span {
-      color: #7c3aed;
-    }
+    /* TOAST */
+    #gp-toast-container { position: fixed; top: 1rem; right: 1rem; z-index: 2000; display: flex; flex-direction: column; gap: .5rem; max-width: min(340px, calc(100vw - 2rem)); }
+    .gp-toast { display: flex; align-items: flex-start; gap: .6rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: .85rem 1rem; box-shadow: 0 12px 32px rgba(0,0,0,.1); opacity: 0; transform: translateX(16px); transition: .25s; font-size: .83rem; line-height: 1.5; }
+    .gp-toast--visible { opacity: 1; transform: translateX(0); }
+    .gp-toast__icon { flex-shrink: 0; font-size: 1rem; }
+    .gp-toast--success .gp-toast__icon { color: #22c55e; }
+    .gp-toast--error .gp-toast__icon { color: #dc2626; }
+    .gp-toast--warning .gp-toast__icon { color: #f59e0b; }
 
-    .balance-card .balance-sub {
-      font-size: 13px;
-      color: #94a3b8;
-      margin-top: 4px;
-    }
-
-    .balance-card .balance-sub i {
-      color: #f59e0b;
-      margin-right: 4px;
-    }
-
-    /* Stats Row */
-    .stats-row {
-      width: 100%;
-      max-width: 480px;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .stat-item {
-      background: white;
-      border-radius: 16px;
-      padding: 14px 12px;
-      text-align: center;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-      border: 1px solid #f1f5f9;
-    }
-
-    .stat-item .stat-number {
-      font-size: 18px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-
-    .stat-item .stat-number.green {
-      color: #22c55e;
-    }
-
-    .stat-item .stat-number.purple {
-      color: #7c3aed;
-    }
-
-    .stat-item .stat-number.orange {
-      color: #f59e0b;
-    }
-
-    .stat-item .stat-label {
-      font-size: 11px;
-      color: #94a3b8;
-      font-weight: 500;
-      margin-top: 2px;
-    }
-
-    /* Video Section */
-    .video-section {
-      width: 100%;
-      max-width: 480px;
-      padding: 0 16px;
-      margin-bottom: 16px;
-    }
-
-    .video-section .section-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .video-section .section-title i {
-      color: #7c3aed;
-    }
-
-    .video-wrapper {
-      background: #0f172a;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      position: relative;
-    }
-
-    .video-wrapper video {
-      width: 100%;
-      display: block;
-    }
-
-    .video-section .video-note {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 14px;
-      color: #475569;
-      font-weight: 500;
-    }
-
-    .video-section .video-note .highlight {
-      color: #7c3aed;
-      font-weight: 700;
-    }
-
-    .video-section .video-note i {
-      color: #22c55e;
-    }
-
-    /* Withdrawal Form */
-    .form-section {
-      width: 100%;
-      max-width: 480px;
-      padding: 0 16px;
-      margin-bottom: 20px;
-    }
-
-    .form-section .form-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .form-section .form-title i {
-      color: #7c3aed;
-    }
-
-    .form-card {
-      background: white;
-      border-radius: 24px;
-      padding: 24px 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      border: 1px solid #f1f5f9;
-    }
-
-    .input-group {
-      margin-bottom: 16px;
-      position: relative;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #475569;
-      margin-bottom: 4px;
-    }
-
-    .input-group label i {
-      color: #7c3aed;
-      width: 18px;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #e2e8f0;
-      border-radius: 14px;
-      font-size: 15px;
-      transition: 0.2s;
-      background: #f8fafc;
-      outline: none;
-    }
-
-    .input-group input:focus {
-      border-color: #7c3aed;
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
-    }
-
-    .input-group input:focus ~ .floating-label,
-    .input-group input:valid ~ .floating-label {
-      transform: translateY(-24px);
-      font-size: 12px;
-      color: #7c3aed;
-    }
-
-    .btn-withdraw {
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 14px;
-      background: linear-gradient(145deg, #22c55e, #16a34a);
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 24px -6px rgba(34, 197, 94, 0.35);
-    }
-
-    .btn-withdraw:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px -8px rgba(34, 197, 94, 0.4);
-    }
-
-    .btn-withdraw:active {
-      transform: scale(0.97);
-    }
-
-    .btn-withdraw i {
-      font-size: 18px;
-    }
-
-    /* Crypto Button */
-    .crypto-section {
-      width: 100%;
-      max-width: 480px;
-      padding: 0 16px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .btn-crypto {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 32px;
-      background: #f8fafc;
-      border: 2px solid #e2e8f0;
-      border-radius: 60px;
-      font-size: 16px;
-      font-weight: 700;
-      color: #0f172a;
-      cursor: pointer;
-      transition: 0.2s;
-      text-decoration: none;
-    }
-
-    .btn-crypto:hover {
-      border-color: #f59e0b;
-      background: #fffbeb;
-      transform: translateY(-2px);
-    }
-
-    .btn-crypto i {
-      font-size: 22px;
-      color: #f7931a;
-    }
-
-    /* Bottom Menu */
-    .bottom-menu {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 12px 10px 16px;
-      z-index: 999;
-    }
-
-    .bottom-menu a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #94a3b8;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 600;
-      gap: 2px;
-      transition: 0.2s;
-    }
-
-    .bottom-menu a i {
-      font-size: 20px;
-    }
-
-    .bottom-menu a.active {
-      color: #7c3aed;
-    }
-
-    .bottom-menu a.active i {
-      background: #ede9fe;
-      padding: 6px 14px;
-      border-radius: 30px;
-    }
-
-    /* Responsive */
     @media (max-width: 480px) {
-      #gradient {
-        height: 160px;
-        padding: 20px 18px;
-      }
-      .header-content .avatar {
-        width: 50px;
-        height: 50px;
-        font-size: 22px;
-      }
-      .header-content .user-info h2 {
-        font-size: 17px;
-      }
-      .balance-card .balance-amount {
-        font-size: 28px;
-      }
-      .stats-row {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 6px;
-      }
-      .stat-item {
-        padding: 10px 8px;
-      }
-      .stat-item .stat-number {
-        font-size: 15px;
-      }
+      #gradient { height: 140px; padding: 20px 18px; }
+      .header-content .avatar { width: 46px; height: 46px; font-size: 20px; }
+      .header-content .user-info h2 { font-size: 16px; }
+      .balance-card .balance-amount { font-size: 28px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Animated Gradient Header -->
+  <div id="gp-toast-container"></div>
+
+  <!-- HEADER -->
   <div id="gradient">
     <div class="header-content">
       <div class="avatar"><i class="fas fa-user"></i></div>
       <div class="user-info">
         <h2>Welcome Back! 👋</h2>
-        <p>Ready to start earning today</p>
+        <p>Watch ads to increase your balance</p>
       </div>
     </div>
   </div>
 
-  <!-- Balance Card -->
+  <!-- BALANCE -->
   <div class="balance-card">
-    <div class="balance-label">
-      <i class="fas fa-wallet"></i> Available Balance
-    </div>
-    <div class="balance-amount">
-      ₦<span id="number">7,500</span>
-    </div>
-    <div class="balance-sub">
-      <i class="fas fa-arrow-up"></i> Keep watching videos to increase your earnings
-    </div>
+    <div class="balance-label"><i class="fas fa-wallet"></i> Available Balance</div>
+    <div class="balance-amount">₦<span id="number">7,500</span></div>
+    <div class="balance-sub"><i class="fas fa-arrow-up"></i> Watch ads below to earn more</div>
   </div>
 
-  <!-- Stats Row -->
+  <!-- STATS -->
   <div class="stats-row">
     <div class="stat-item">
-      <div class="stat-number green" id="todayEarnings">+₦1,640</div>
+      <div class="stat-number green" id="todayEarnings">+₦0</div>
       <div class="stat-label">Today's Earnings</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number purple">24</div>
-      <div class="stat-label">Videos Watched</div>
+      <div class="stat-number purple" id="adsViewed">0 / 30</div>
+      <div class="stat-label">Ads Viewed</div>
     </div>
     <div class="stat-item">
       <div class="stat-number orange">5</div>
@@ -467,201 +137,242 @@
     </div>
   </div>
 
-  <!-- Video Section -->
-  <div class="video-section">
-    <div class="section-title">
-      <i class="fas fa-play-circle"></i> Watch & Earn
-    </div>
-    <div class="video-wrapper">
-      <video controls preload="metadata">
-        <source src="video2.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <div class="video-note">
-      <i class="fas fa-arrow-up"></i> The more videos you watch, the more your <span class="highlight">available balance</span> increases
-    </div>
+  <!-- WARNING -->
+  <div class="warn-banner">
+    <i class="fas fa-triangle-exclamation"></i>
+    <span><strong>Ads session is monitored.</strong> Stay on the ad page for the timer shown, then come back to claim. Coming back too early = no reward.</span>
   </div>
 
-  <!-- Withdrawal Form -->
-  <div class="form-section">
-    <div class="form-title">
-      <i class="fas fa-arrow-down"></i> Withdraw Funds
-    </div>
-    <div class="form-card">
-      <form id="fundForm">
-        <div class="input-group">
-          <label><i class="fas fa-user"></i> Account Number</label>
-          <input type="number" id="palmpayNumber" name="palmpayNumber" placeholder="Enter account number" required>
-        </div>
-        <div class="input-group">
-          <label><i class="fas fa-user-tag"></i> Account Name</label>
-          <input type="text" id="palmpayName" name="palmpayName" placeholder="Enter account name" required>
-        </div>
-        <div class="input-group">
-          <label><i class="fas fa-university"></i> Bank Name</label>
-          <input type="text" id="palmpayCome" name="palmpayCome" placeholder="Enter bank name" required>
-        </div>
-        <div class="input-group">
-          <label><i class="fas fa-naira-sign"></i> Amount</label>
-          <input type="number" id="amount" name="amount" placeholder="Enter amount to withdraw" required>
-        </div>
-        <button type="submit" class="btn-withdraw">
-          <i class="fas fa-paper-plane"></i> Withdraw Now
-        </button>
-      </form>
-    </div>
+  <!-- SECTION -->
+  <div class="section-title"><i class="fas fa-rectangle-ad"></i> Watch & Earn</div>
+
+  <!-- FILTERS -->
+  <div class="filter-bar">
+    <button class="fpill active" data-f="all">All</button>
+    <button class="fpill" data-f="available">Available</button>
+    <button class="fpill" data-f="viewed">Viewed</button>
+    <button class="fpill" data-f="10">₦10</button>
+    <button class="fpill" data-f="15">₦15</button>
+    <button class="fpill" data-f="20">₦20</button>
   </div>
 
-  <!-- Crypto Button -->
-  <div class="crypto-section">
-    <a href="BTCwithdraw.html" class="btn-crypto">
-      <i class="fab fa-bitcoin"></i> Withdraw with Crypto
-    </a>
-  </div>
+  <!-- AD GRID -->
+  <div id="adGrid"></div>
 
-  <!-- Bottom Menu -->
+  <!-- BOTTOM NAV -->
   <div class="bottom-menu">
-    <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
-    <a href="about.html"><i class="fas fa-info-circle"></i><span>About</span></a>
-    <a href="contact.html" class="active"><i class="fas fa-envelope"></i><span>Contact</span></a>
+    <a href="home.html" class="active"><i class="fas fa-rectangle-ad"></i><span>Ads</span></a>
+    <a href="withdraw.html"><i class="fas fa-money-bill-transfer"></i><span>Withdraw</span></a>
+    <a href="about.html"><i class="fas fa-circle-info"></i><span>About</span></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i><span>Contact</span></a>
   </div>
 
   <script>
-    // Disable right-click
-    document.addEventListener('contextmenu', function(event) {
-      event.preventDefault();
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    function showToast(msg, type='success', duration=3500){
+      const c=document.getElementById('gp-toast-container');
+      const icons={success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation',info:'fa-circle-info'};
+      const t=document.createElement('div');
+      t.className='gp-toast gp-toast--'+type;
+      t.innerHTML='<span class="gp-toast__icon"><i class="fas '+(icons[type]||icons.info)+'"></i></span><span>'+msg+'</span>';
+      c.appendChild(t);
+      requestAnimationFrame(()=>t.classList.add('gp-toast--visible'));
+      setTimeout(()=>{t.classList.remove('gp-toast--visible');setTimeout(()=>t.remove(),300);},duration);
+    }
+
+    // ── ADS (30) ──
+    const ADS = [
+      {id:'ad_01',name:'Opay',icon:'💳',timer:15,reward:10,desc:'Fast digital payments across Nigeria'},
+      {id:'ad_02',name:'Kuda Bank',icon:'🏦',timer:15,reward:10,desc:'The bank account built for Nigerians'},
+      {id:'ad_03',name:'PalmPay',icon:'💳',timer:20,reward:15,desc:'Send money instantly, pay bills easily'},
+      {id:'ad_04',name:'Moniepoint',icon:'💳',timer:15,reward:10,desc:'Business banking that works for you'},
+      {id:'ad_05',name:'FairMoney',icon:'💰',timer:20,reward:15,desc:'Instant loans up to ₦1 million'},
+      {id:'ad_06',name:'PiggyVest',icon:'🐷',timer:20,reward:15,desc:'Save and invest with ease in Nigeria'},
+      {id:'ad_07',name:'Chipper Cash',icon:'💳',timer:15,reward:10,desc:'Send money across Africa for free'},
+      {id:'ad_08',name:'Jumia',icon:'🛒',timer:20,reward:15,desc:'Shop from millions of products online'},
+      {id:'ad_09',name:'Konga',icon:'🛒',timer:15,reward:10,desc:"Nigeria's trusted online marketplace"},
+      {id:'ad_10',name:'Jiji.ng',icon:'🏷️',timer:15,reward:10,desc:'Buy and sell anything in Nigeria'},
+      {id:'ad_11',name:'Slot Nigeria',icon:'📱',timer:20,reward:15,desc:'Latest phones and gadgets, best prices'},
+      {id:'ad_12',name:"Domino's",icon:'🍕',timer:20,reward:15,desc:'Hot fresh pizza delivered to your door'},
+      {id:'ad_13',name:'Chicken Republic',icon:'🍗',timer:15,reward:10,desc:"Nigeria's favourite fast food chain"},
+      {id:'ad_14',name:'Chowdeck',icon:'🍱',timer:20,reward:15,desc:'Food delivery from top restaurants fast'},
+      {id:'ad_15',name:'Glovo',icon:'🛵',timer:15,reward:10,desc:'Get food and groceries in minutes'},
+      {id:'ad_16',name:'Flutterwave',icon:'⚡',timer:30,reward:20,desc:'Payment infrastructure for Africa'},
+      {id:'ad_17',name:'Paystack',icon:'💳',timer:30,reward:20,desc:'Accept online payments with ease'},
+      {id:'ad_18',name:'Paga',icon:'📲',timer:20,reward:15,desc:'Mobile money and payment solutions'},
+      {id:'ad_19',name:'Boomplay',icon:'🎵',timer:20,reward:15,desc:'African music streaming platform'},
+      {id:'ad_20',name:'IrokoTV',icon:'📺',timer:20,reward:15,desc:'Stream the best Nollywood movies online'},
+      {id:'ad_21',name:'ULesson',icon:'📚',timer:20,reward:15,desc:"Learn with Nigeria's best tutors"},
+      {id:'ad_22',name:'AltSchool Africa',icon:'🎓',timer:30,reward:20,desc:'Tech education for African developers'},
+      {id:'ad_23',name:'Wakanow',icon:'✈️',timer:30,reward:20,desc:'Book flights and hotels at best prices'},
+      {id:'ad_24',name:'Hotels.ng',icon:'🏨',timer:30,reward:20,desc:'Discover and book hotels across Nigeria'},
+      {id:'ad_25',name:'DSTV Nigeria',icon:'📺',timer:20,reward:15,desc:'Your favourite TV channels and sport'},
+      {id:'ad_26',name:'MTN Nigeria',icon:'📶',timer:20,reward:15,desc:'Stay connected everywhere in Nigeria'},
+      {id:'ad_27',name:'Airtel Nigeria',icon:'📡',timer:20,reward:15,desc:'4G internet across all of Nigeria'},
+      {id:'ad_28',name:'Zenith Bank',icon:'🏦',timer:30,reward:20,desc:'Your number one bank in Nigeria'},
+      {id:'ad_29',name:'GTBank',icon:'🏦',timer:20,reward:15,desc:'Brilliant banking with GTBank'},
+      {id:'ad_30',name:'CashTube',icon:'⚡',timer:15,reward:10,desc:'Nigeria number 1 earning platform'},
+    ];
+
+    const TODAY = new Date().toISOString().split('T')[0];
+
+    // ── STATE ──
+    let balance = parseInt(localStorage.getItem('number')) || 7500;
+    let todayEarned = parseInt(localStorage.getItem('todayEarned')) || 0;
+    let viewed = new Set(JSON.parse(localStorage.getItem('viewedAds_'+TODAY) || '[]'));
+    let active = null; // {adId, reward, required}
+    let hiddenSince = null;
+    let totalHidden = 0;
+
+    function fmt(n){ return n.toLocaleString('en-US'); }
+    function saveState(){
+      localStorage.setItem('number', balance);
+      localStorage.setItem('todayEarned', todayEarned);
+      localStorage.setItem('viewedAds_'+TODAY, JSON.stringify([...viewed]));
+    }
+    function updateStats(){
+      document.getElementById('number').textContent = fmt(balance);
+      document.getElementById('todayEarnings').textContent = '+₦' + fmt(todayEarned);
+      document.getElementById('adsViewed').textContent = viewed.size + ' / ' + ADS.length;
+    }
+
+    // ── VISIBILITY TRACKING (anti-cheat) ──
+    document.addEventListener('visibilitychange', () => {
+      if(document.visibilityState === 'hidden'){
+        hiddenSince = Date.now();
+      } else {
+        if(hiddenSince){ totalHidden += Date.now() - hiddenSince; hiddenSince = null; }
+
+        if(active){
+          if(totalHidden >= active.required){
+            enableClaim(active.adId, active.reward);
+          } else {
+            const remaining = Math.ceil((active.required - totalHidden) / 1000);
+            showToast('You came back too early! Stay for ' + remaining + ' more second' + (remaining===1?'':'s') + '.', 'warning', 5000);
+            const prevId = active.adId;
+            active = null; totalHidden = 0;
+            refreshCard(prevId);
+          }
+        }
+      }
     });
 
-    // ---------- ANIMATED GRADIENT ----------
-    var colors = new Array(
-      [62,35,255],
-      [60,255,60],
-      [255,35,98],
-      [45,175,230],
-      [255,0,255],
-      [255,128,0]
-    );
+    // ── RENDER ──
+    function currentFilter(){ return document.querySelector('.fpill.active')?.dataset?.f || 'all'; }
 
-    var step = 0;
-    var colorIndices = [0,1,2,3];
-    var gradientSpeed = 0.002;
+    function renderGrid(filter){
+      const grid = document.getElementById('adGrid');
+      let list = ADS;
+      if(filter === 'available') list = ADS.filter(a => !viewed.has(a.id));
+      else if(filter === 'viewed') list = ADS.filter(a => viewed.has(a.id));
+      else if(filter === '10') list = ADS.filter(a => a.reward === 10);
+      else if(filter === '15') list = ADS.filter(a => a.reward === 15);
+      else if(filter === '20') list = ADS.filter(a => a.reward === 20);
 
-    function updateGradient() {
-      if ($ === undefined) return;
-      
-      var c0_0 = colors[colorIndices[0]];
-      var c0_1 = colors[colorIndices[1]];
-      var c1_0 = colors[colorIndices[2]];
-      var c1_1 = colors[colorIndices[3]];
-
-      var istep = 1 - step;
-      var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-      var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-      var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-      var color1 = "rgb("+r1+","+g1+","+b1+")";
-
-      var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
-      var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
-      var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
-      var color2 = "rgb("+r2+","+g2+","+b2+")";
-
-      $('#gradient').css({
-        background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"
-      }).css({
-        background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"
-      });
-      
-      step += gradientSpeed;
-      if (step >= 1) {
-        step %= 1;
-        colorIndices[0] = colorIndices[1];
-        colorIndices[2] = colorIndices[3];
-        colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-        colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-      }
-    }
-
-    setInterval(updateGradient, 10);
-
-    // ---------- BALANCE AUTO-INCREASE ----------
-    const numberElement = document.getElementById('number');
-    let number = parseInt(localStorage.getItem('number')) || 5500;
-
-    function formatNumber(num) {
-      return num.toLocaleString('en-US');
-    }
-
-    function updateBalance() {
-      number += 164;
-      numberElement.textContent = formatNumber(number);
-      localStorage.setItem('number', number);
-      
-      // Update today's earnings
-      const todayEarnings = document.getElementById('todayEarnings');
-      if (todayEarnings) {
-        const earned = parseInt(localStorage.getItem('todayEarned')) || 0;
-        const newEarned = earned + 164;
-        localStorage.setItem('todayEarned', newEarned);
-        todayEarnings.textContent = '+₦' + formatNumber(newEarned);
-      }
-    }
-
-    // Update today's earnings on load
-    const todayEarnings = document.getElementById('todayEarnings');
-    const savedEarnings = parseInt(localStorage.getItem('todayEarned')) || 0;
-    if (todayEarnings) {
-      todayEarnings.textContent = '+₦' + formatNumber(savedEarnings);
-    }
-
-    // Initial display
-    numberElement.textContent = formatNumber(number);
-    
-    // Update every 2 seconds (matches original)
-    setInterval(updateBalance, 2000);
-
-    // ---------- FORM SUBMISSION ----------
-    document.getElementById('fundForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const palmpayNumber = document.getElementById('palmpayNumber').value.trim();
-      const palmpayName = document.getElementById('palmpayName').value.trim();
-      const palmpayCome = document.getElementById('palmpayCome').value.trim();
-      const amount = document.getElementById('amount').value.trim();
-
-      if (!palmpayNumber || !palmpayName || !palmpayCome || !amount) {
-        alert('Please fill in all fields.');
+      if(!list.length){
+        grid.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>' + (filter==='viewed' ? 'No ads viewed yet today' : 'All done for today! Fresh ads unlock at midnight.') + '</p></div>';
         return;
       }
 
-      if (parseInt(amount) > parseInt(number)) {
-        alert('Insufficient balance! Please watch more videos to earn more.');
-        return;
+      grid.innerHTML = list.map(ad => buildCard(ad)).join('');
+      grid.querySelectorAll('.vbtn').forEach(b => b.addEventListener('click', () => startAd(b.dataset.id)));
+    }
+
+    function buildCard(ad){
+      const done = viewed.has(ad.id);
+      const isAct = active?.adId === ad.id;
+      let foot;
+      if(done){
+        foot = '<div class="done-label"><i class="fas fa-check-circle"></i> Viewed — ₦' + fmt(ad.reward) + ' earned</div>';
+      } else if(isAct){
+        foot = '<div class="waiting-overlay">Stay away for ' + ad.timer + 's then come back to claim</div>';
+      } else {
+        foot = '<button class="btn vbtn" data-id="' + ad.id + '"' + (active ? ' disabled' : '') + '><i class="fas fa-play"></i> Earn ₦' + fmt(ad.reward) + '</button>';
       }
+      return '<div class="ad-card' + (done?' done':'') + (isAct?' active-ad':'') + '" id="card-' + ad.id + '">' +
+        '<div class="ad-head">' +
+          '<div class="ad-icon">' + ad.icon + '</div>' +
+          '<div><div class="ad-name">' + ad.name + '</div><div class="ad-desc">' + ad.desc + '</div></div>' +
+        '</div>' +
+        '<div class="ad-body">' +
+          '<div><div class="ad-reward">+₦' + fmt(ad.reward) + '</div><div class="ad-timer">⏱ ' + ad.timer + 's away</div></div>' +
+        '</div>' +
+        '<div class="ad-foot" id="foot-' + ad.id + '">' + foot + '</div>' +
+      '</div>';
+    }
 
-      // Store form data
-      localStorage.setItem('palmpayNumber', palmpayNumber);
-      localStorage.setItem('palmpayName', palmpayName);
-      localStorage.setItem('palmpayCome', palmpayCome);
-      localStorage.setItem('amount', amount);
-      localStorage.setItem('withdrawAmount', amount);
+    function refreshCard(adId){
+      const ad = ADS.find(a => a.id === adId);
+      if(!ad) return;
+      const card = document.getElementById('card-' + adId);
+      if(!card) return;
+      card.classList.remove('active-ad');
+      const foot = document.getElementById('foot-' + adId);
+      if(foot){
+        foot.innerHTML = '<button class="btn vbtn" data-id="' + adId + '"><i class="fas fa-play"></i> Earn ₦' + fmt(ad.reward) + '</button>';
+        card.querySelector('.vbtn')?.addEventListener('click', () => startAd(adId));
+      }
+      document.querySelectorAll('.vbtn').forEach(b => { b.disabled = false; });
+    }
 
-      // Navigate to next page
-      window.location.href = 'next-page.html';
-    });
+    function enableClaim(adId, reward){
+      const foot = document.getElementById('foot-' + adId);
+      const card = document.getElementById('card-' + adId);
+      if(!foot) return;
+      foot.innerHTML = '<button class="btn vbtn" id="cb-' + adId + '" style="background:linear-gradient(135deg,#22c55e,#16a34a);"><i class="fas fa-check"></i> Claim ₦' + fmt(reward) + '</button>';
+      document.getElementById('cb-' + adId)?.addEventListener('click', () => claimAd(adId, reward));
+      if(card) card.classList.add('active-ad');
+      showToast('Timer complete! Click Claim to get your reward.', 'success', 4000);
+    }
 
-    // ---------- BOTTOM MENU ACTIVE ----------
-    const menuItems = document.querySelectorAll('.bottom-menu a');
-    menuItems.forEach((item) => {
-      item.addEventListener('click', function() {
-        menuItems.forEach((menuItem) => {
-          menuItem.classList.remove('active');
-        });
-        this.classList.add('active');
-      });
-    });
+    function startAd(adId){
+      if(active){ showToast('Finish the current ad first before starting another.', 'warning'); return; }
+      const ad = ADS.find(a => a.id === adId);
+      if(!ad || viewed.has(ad.id)) return;
 
-    // ---------- LIVECHAT (kept from original) ----------
+      // Open the ad link in a new tab
+      window.open('https://omg10.com/4/11169333', '_blank', 'noopener,noreferrer');
+
+      active = {adId, reward: ad.reward, required: ad.timer * 1000};
+      totalHidden = 0; hiddenSince = null;
+
+      document.querySelectorAll('.vbtn').forEach(b => { b.disabled = true; });
+
+      const foot = document.getElementById('foot-' + adId);
+      const card = document.getElementById('card-' + adId);
+      if(foot) foot.innerHTML = '<div class="waiting-overlay">Stay away for ' + ad.timer + 's then come back to claim</div>';
+      if(card) card.classList.add('active-ad');
+
+      showToast('Ad opened! Stay on the ad for ' + ad.timer + ' seconds, then come back here.', 'success', 6000);
+    }
+
+    function claimAd(adId, reward){
+      const btn = document.getElementById('cb-' + adId);
+      if(btn){ btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Crediting…'; }
+
+      balance += reward;
+      todayEarned += reward;
+      viewed.add(adId);
+      active = null; totalHidden = 0;
+      saveState();
+      updateStats();
+      renderGrid(currentFilter());
+      showToast('✅ ₦' + fmt(reward) + ' credited to your wallet!', 'success', 4000);
+    }
+
+    // ── FILTERS ──
+    document.querySelectorAll('.fpill').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('.fpill').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      renderGrid(b.dataset.f);
+    }));
+
+    // ── INIT ──
+    updateStats();
+    renderGrid('all');
+
+    // ── LIVECHAT ──
     window.__lc = window.__lc || {};
     window.__lc.license = 15808029;
     (function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));

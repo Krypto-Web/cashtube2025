@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Withdraw · Cash Tube2025</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237c3aed'/><text x='16' y='23' font-size='16' text-anchor='middle' fill='white' font-family='Georgia,serif'>₦</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: #f0f2f8; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px 16px 90px; }
+
+    .back-link { width: 100%; max-width: 480px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .back-link a { color: #4b5563; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: .2s; }
+    .back-link a:hover { color: #7c3aed; }
+
+    .main-card { width: 100%; max-width: 480px; background: #fff; border-radius: 32px; padding: 28px 24px 32px; box-shadow: 0 20px 60px rgba(0,0,0,.06); border: 1px solid rgba(255,255,255,.6); }
+    .icon-top { text-align: center; margin-bottom: 12px; }
+    .icon-top i { font-size: 44px; color: #7c3aed; background: #ede9fe; padding: 16px; border-radius: 50%; }
+    .main-card h2 { font-size: 24px; font-weight: 800; color: #0f172a; text-align: center; margin-bottom: 4px; }
+    .subtitle { text-align: center; color: #64748b; font-size: 14px; margin-bottom: 20px; }
+
+    .balance-strip { background: linear-gradient(145deg, #7c3aed, #5b21b6); border-radius: 20px; padding: 20px; color: #fff; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+    .balance-strip .label { font-size: 12px; color: rgba(255,255,255,.75); margin-bottom: 2px; }
+    .balance-strip .amount { font-size: 28px; font-weight: 800; }
+    .balance-strip i { font-size: 32px; color: rgba(255,255,255,.25); }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 6px; }
+    .form-group label i { color: #7c3aed; width: 18px; }
+    .form-group input { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 14px; font-size: 15px; background: #f8fafc; outline: none; transition: .2s; }
+    .form-group input:focus { border-color: #7c3aed; background: #fff; box-shadow: 0 0 0 4px rgba(124,58,237,.08); }
+
+    .quick-amounts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .quick-amounts button { padding: 6px 14px; border-radius: 50px; border: 1.5px solid #e2e8f0; background: #fff; font-size: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: .15s; }
+    .quick-amounts button:hover { border-color: #7c3aed; color: #6b21a5; background: #faf5ff; }
+
+    .btn-submit { width: 100%; padding: 16px; border: none; border-radius: 14px; background: linear-gradient(145deg, #22c55e, #16a34a); color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 24px -6px rgba(34,197,94,.35); }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 32px -8px rgba(34,197,94,.4); }
+    .btn-submit:disabled { opacity: .6; pointer-events: none; transform: none; }
+
+    .notice-banner { background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 14px; padding: 12px 16px; display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; font-size: 13px; color: #92400E; line-height: 1.5; }
+    .notice-banner i { color: #D97706; margin-top: 2px; }
+
+    .crypto-link { text-align: center; margin-top: 16px; font-size: 13px; color: #94a3b8; }
+    .crypto-link a { color: #6b21a5; font-weight: 700; text-decoration: none; }
+    .crypto-link a:hover { text-decoration: underline; }
+
+    /* ── PENDING STATE ── */
+    #pendingView { display: none; text-align: center; }
+    #pendingView .pending-icon { width: 90px; height: 90px; border-radius: 50%; background: #FEF3C7; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 40px; color: #D97706; animation: pulse 1.8s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(217,119,6,.25);} 50%{ box-shadow: 0 0 0 18px rgba(217,119,6,0);} }
+    #pendingView h2 { font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+    #pendingView .pending-sub { font-size: 14px; color: #64748b; margin-bottom: 20px; }
+
+    .receipt { text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px 18px; margin-bottom: 18px; }
+    .receipt-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eef2f6; font-size: 13px; }
+    .receipt-row:last-child { border-bottom: none; }
+    .receipt-row .rl { color: #94a3b8; }
+    .receipt-row .rv { color: #0f172a; font-weight: 700; text-align: right; max-width: 60%; word-break: break-word; }
+    .receipt-row .rv.amount { color: #6b21a5; font-size: 15px; }
+
+    .status-pill { display: inline-flex; align-items: center; gap: 6px; background: #FEF3C7; color: #92400E; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 50px; }
+    .status-pill i { font-size: 12px; }
+
+    .pending-note { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 14px; padding: 12px 16px; font-size: 13px; color: #1E40AF; line-height: 1.5; text-align: left; display: flex; gap: 10px; margin-bottom: 18px; }
+    .pending-note i { margin-top: 2px; }
+
+    .btn-home { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; border-radius: 14px; background: #0f172a; color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; transition: .2s; }
+    .btn-home:hover { background: #1e293b; }
+
+    /* BOTTOM NAV */
+    .bottom-menu { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(0,0,0,.05); display: flex; justify-content: space-around; align-items: center; padding: 12px 10px 16px; z-index: 999; }
+    .bottom-menu a { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 11px; font-weight: 600; gap: 2px; transition: .2s; }
+    .bottom-menu a i { font-size: 20px; }
+    .bottom-menu a.active { color: #7c3aed; }
+    .bottom-menu a.active i { background: #ede9fe; padding: 6px 14px; border-radius: 30px; }
+
+    #gp-toast-container { position: fixed; top: 1rem; right: 1rem; z-index: 2000; display: flex; flex-direction: column; gap: .5rem; max-width: min(340px, calc(100vw - 2rem)); }
+    .gp-toast { display: flex; align-items: flex-start; gap: .6rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: .85rem 1rem; box-shadow: 0 12px 32px rgba(0,0,0,.1); opacity: 0; transform: translateX(16px); transition: .25s; font-size: .83rem; line-height: 1.5; }
+    .gp-toast--visible { opacity: 1; transform: translateX(0); }
+    .gp-toast__icon { flex-shrink: 0; font-size: 1rem; }
+    .gp-toast--success .gp-toast__icon { color: #22c55e; }
+    .gp-toast--error .gp-toast__icon { color: #dc2626; }
+    .gp-toast--warning .gp-toast__icon { color: #f59e0b; }
+  </style>
+</head>
+<body>
+
+  <div id="gp-toast-container"></div>
+
+  <div class="back-link">
+    <a href="home.html"><i class="fas fa-arrow-left"></i> Back</a>
+    <span style="font-size:14px;font-weight:700;color:#0f172a;">Withdraw</span>
+    <span style="width:50px;"></span>
+  </div>
+
+  <div class="main-card">
+
+    <!-- FORM VIEW -->
+    <div id="formView">
+      <div class="icon-top"><i class="fas fa-money-bill-transfer"></i></div>
+      <h2>Withdraw Funds</h2>
+      <p class="subtitle">Transfer your earnings to your bank account.</p>
+
+      <div class="balance-strip">
+        <div>
+          <div class="label">Available Balance</div>
+          <div class="amount">₦<span id="balanceDisplay">0</span></div>
+        </div>
+        <i class="fas fa-wallet"></i>
+      </div>
+
+      <form id="withdrawForm">
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Account Number</label>
+          <input type="number" id="accNumber" placeholder="Enter account number" required>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-user-tag"></i> Account Name</label>
+          <input type="text" id="accName" placeholder="Enter account name" required>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-university"></i> Bank Name</label>
+          <input type="text" id="bankName" placeholder="Enter bank name" required>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-naira-sign"></i> Amount (₦)</label>
+          <input type="number" id="amount" placeholder="Enter amount" required>
+          <div class="quick-amounts">
+            <button type="button" onclick="setAmt(1000)">₦1,000</button>
+            <button type="button" onclick="setAmt(2000)">₦2,000</button>
+            <button type="button" onclick="setAmt(5000)">₦5,000</button>
+            <button type="button" onclick="setAmt(10000)">₦10,000</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <i class="fas fa-paper-plane"></i> Request Withdrawal
+        </button>
+      </form>
+
+      <div class="notice-banner">
+        <i class="fas fa-circle-info"></i>
+        <span>Withdrawals are processed within <strong>24 hours</strong>. Ensure your account details are correct — transfers cannot be reversed.</span>
+      </div>
+
+      <div class="crypto-link">
+        Prefer crypto? <a href="BTCwithdraw.html">Withdraw with Crypto</a>
+      </div>
+    </div>
+
+    <!-- PENDING VIEW -->
+    <div id="pendingView">
+      <div class="pending-icon"><i class="fas fa-clock"></i></div>
+      <h2>Withdrawal Pending</h2>
+      <p class="pending-sub">Your request has been submitted and is awaiting approval.</p>
+
+      <div class="receipt">
+        <div class="receipt-row"><span class="rl">Amount</span><span class="rv amount">₦<span id="pAmount">0</span></span></div>
+        <div class="receipt-row"><span class="rl">Account Number</span><span class="rv" id="pNumber">—</span></div>
+        <div class="receipt-row"><span class="rl">Account Name</span><span class="rv" id="pName">—</span></div>
+        <div class="receipt-row"><span class="rl">Bank</span><span class="rv" id="pBank">—</span></div>
+        <div class="receipt-row"><span class="rl">Reference</span><span class="rv" id="pRef">—</span></div>
+        <div class="receipt-row"><span class="rl">Date</span><span class="rv" id="pDate">—</span></div>
+        <div class="receipt-row"><span class="rl">Status</span><span class="rv"><span class="status-pill"><i class="fas fa-clock"></i> Pending</span></span></div>
+      </div>
+
+      <div class="pending-note">
+        <i class="fas fa-circle-info"></i>
+        <span>Your withdrawal is being reviewed. You'll be notified once it's approved — usually within 24 hours.</span>
+      </div>
+
+      <a href="home.html" class="btn-home"><i class="fas fa-house"></i> Back to Dashboard</a>
+    </div>
+
+  </div>
+
+  <div class="bottom-menu">
+    <a href="home.html"><i class="fas fa-rectangle-ad"></i><span>Ads</span></a>
+    <a href="withdraw.html" class="active"><i class="fas fa-money-bill-transfer"></i><span>Withdraw</span></a>
+    <a href="about.html"><i class="fas fa-circle-info"></i><span>About</span></a>
+    <a href="contact.html"><i class="fas fa-envelope"></i><span>Contact</span></a>
+  </div>
+
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    function showToast(msg, type='success', duration=3500){
+      const c=document.getElementById('gp-toast-container');
+      const icons={success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation',info:'fa-circle-info'};
+      const t=document.createElement('div');
+      t.className='gp-toast gp-toast--'+type;
+      t.innerHTML='<span class="gp-toast__icon"><i class="fas '+(icons[type]||icons.info)+'"></i></span><span>'+msg+'</span>';
+      c.appendChild(t);
+      requestAnimationFrame(()=>t.classList.add('gp-toast--visible'));
+      setTimeout(()=>{t.classList.remove('gp-toast--visible');setTimeout(()=>t.remove(),300);},duration);
+    }
+
+    function fmt(n){ return Number(n).toLocaleString('en-US'); }
+
+    let balance = parseInt(localStorage.getItem('number')) || 7500;
+    document.getElementById('balanceDisplay').textContent = fmt(balance);
+
+    function setAmt(v){ document.getElementById('amount').value = v; }
+
+    // If a pending withdrawal already exists, show pending view on load
+    const existingPending = localStorage.getItem('pendingWithdrawal');
+    if(existingPending){
+      try { showPending(JSON.parse(existingPending)); } catch(e){}
+    }
+
+    document.getElementById('withdrawForm').addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const accNumber = document.getElementById('accNumber').value.trim();
+      const accName = document.getElementById('accName').value.trim();
+      const bankName = document.getElementById('bankName').value.trim();
+      const amount = document.getElementById('amount').value.trim();
+
+      if(!accNumber || !accName || !bankName || !amount){
+        showToast('Please fill in all fields.', 'warning'); return;
+      }
+      if(accNumber.length < 10){
+        showToast('Enter a valid account number (10 digits).', 'warning'); return;
+      }
+      const amt = parseInt(amount);
+      if(amt <= 0){ showToast('Enter a valid amount.', 'warning'); return; }
+      if(amt > balance){ showToast('Insufficient balance. You have ₦' + fmt(balance), 'error'); return; }
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+
+      // Deduct balance and store pending record
+      balance -= amt;
+      localStorage.setItem('number', balance);
+
+      const record = {
+        amount: amt,
+        number: accNumber,
+        name: accName,
+        bank: bankName,
+        ref: 'CT-' + Date.now().toString().slice(-8) + '-' + Math.random().toString(36).substring(2,6).toUpperCase(),
+        date: new Date().toLocaleString('en-NG', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true }),
+        status: 'pending'
+      };
+      localStorage.setItem('pendingWithdrawal', JSON.stringify(record));
+
+      // Also keep old keys so next-page.html still works if you use it
+      localStorage.setItem('palmpayNumber', accNumber);
+      localStorage.setItem('palmpayName', accName);
+      localStorage.setItem('palmpayCome', bankName);
+      localStorage.setItem('amount', amt);
+
+      setTimeout(() => {
+        showToast('Withdrawal request submitted — pending approval.', 'success', 4000);
+        showPending(record);
+      }, 900);
+    });
+
+    function showPending(r){
+      document.getElementById('formView').style.display = 'none';
+      document.getElementById('pendingView').style.display = 'block';
+
+      document.getElementById('pAmount').textContent = fmt(r.amount);
+      document.getElementById('pNumber').textContent = r.number;
+      document.getElementById('pName').textContent = r.name;
+      document.getElementById('pBank').textContent = r.bank;
+      document.getElementById('pRef').textContent = r.ref;
+      document.getElementById('pDate').textContent = r.date;
+    }
+
+    window.__lc = window.__lc || {};
+    window.__lc.license = 15808029;
+    (function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));
+  </script>
+  <noscript><a href="https://www.livechat.com/chat-with/15808029/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+
+</body>
+</html>

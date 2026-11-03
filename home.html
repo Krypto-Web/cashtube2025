@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Dashboard · Cash Tube2025</title>
+  <title>Watch Ads · Cash Tube2025</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237c3aed'/><text x='16' y='23' font-size='16' text-anchor='middle' fill='white' font-family='Georgia,serif'>₦</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -11,14 +11,12 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body { background: #f0f2f8; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0 0 90px 0; }
 
-    /* HEADER — same as before */
     #gradient { width: 100%; max-width: 480px; height: 160px; border-radius: 0 0 40px 40px; padding: 30px 24px 20px; display: flex; flex-direction: column; justify-content: center; }
     .header-content { display: flex; align-items: center; gap: 14px; }
     .header-content .avatar { width: 56px; height: 56px; background: rgba(255,255,255,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: white; border: 2px solid rgba(255,255,255,.3); }
     .header-content .user-info h2 { font-size: 18px; font-weight: 700; color: white; }
     .header-content .user-info p { font-size: 13px; color: rgba(255,255,255,.8); }
 
-    /* BALANCE CARD — same style as before */
     .balance-card { width: 100%; max-width: 480px; margin: -30px 16px 16px; padding: 24px 20px; background: #fff; border-radius: 24px; box-shadow: 0 8px 30px rgba(0,0,0,.08); position: relative; z-index: 10; }
     .balance-card .balance-label { font-size: 14px; color: #94a3b8; font-weight: 500; display: flex; align-items: center; gap: 8px; }
     .balance-card .balance-label i { color: #22c55e; }
@@ -26,7 +24,6 @@
     .balance-card .balance-amount span { color: #7c3aed; }
     .balance-card .balance-sub { font-size: 13px; color: #94a3b8; margin-top: 4px; }
 
-    /* STATS — same as before */
     .stats-row { width: 100%; max-width: 480px; padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 16px; }
     .stat-item { background: white; border-radius: 16px; padding: 14px 12px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,.03); }
     .stat-item .stat-number { font-size: 18px; font-weight: 800; color: #0f172a; }
@@ -35,21 +32,17 @@
     .stat-item .stat-number.orange { color: #f59e0b; }
     .stat-item .stat-label { font-size: 11px; color: #94a3b8; font-weight: 500; margin-top: 2px; }
 
-    /* SECTION TITLE */
     .section-title { width: 100%; max-width: 480px; padding: 0 16px; font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
     .section-title i { color: #7c3aed; }
 
-    /* WARNING BANNER */
     .warn-banner { width: 100%; max-width: 480px; margin: 0 16px 14px; background: #FEE2E2; border: 1px solid #FECACA; border-radius: 14px; padding: 12px 16px; display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #991B1B; line-height: 1.5; }
     .warn-banner i { color: #DC2626; margin-top: 2px; }
 
-    /* FILTERS */
     .filter-bar { width: 100%; max-width: 480px; padding: 0 16px; display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
     .fpill { padding: .45rem 1rem; border-radius: 50px; font-size: .78rem; font-weight: 700; border: 1.5px solid #e2e8f0; background: #fff; color: #475569; transition: .15s; cursor: pointer; }
     .fpill:hover { border-color: #7c3aed; color: #6b21a5; }
     .fpill.active { background: #0f172a; color: #fff; border-color: #0f172a; }
 
-    /* AD GRID */
     #adGrid { width: 100%; max-width: 480px; padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 420px) { #adGrid { grid-template-columns: 1fr; } }
     .ad-card { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: .15s; }
@@ -61,7 +54,7 @@
     .ad-name { font-weight: 700; font-size: 14px; color: #0f172a; }
     .ad-desc { font-size: 11px; color: #94a3b8; line-height: 1.35; }
     .ad-body { padding: 0 14px 8px; display: flex; align-items: center; justify-content: space-between; }
-    .ad-reward { font-weight: 700; font-size: 16px; color: #6b21a5; }
+    .ad-reward { font-weight: 800; font-size: 17px; color: #6b21a5; }
     .ad-timer { font-size: 11px; color: #94a3b8; margin-top: 2px; }
     .ad-foot { padding: 10px 14px; border-top: 1px solid #f1f5f9; background: #f8fafc; }
     .waiting-overlay { font-size: 12px; color: #d97706; font-weight: 600; text-align: center; line-height: 1.4; }
@@ -75,14 +68,12 @@
     .empty-state i { font-size: 2rem; color: #94a3b8; margin-bottom: 8px; }
     .empty-state p { font-size: 14px; color: #94a3b8; }
 
-    /* BOTTOM NAV — same as before */
     .bottom-menu { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(0,0,0,.05); display: flex; justify-content: space-around; align-items: center; padding: 12px 10px 16px; z-index: 999; }
     .bottom-menu a { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 11px; font-weight: 600; gap: 2px; transition: .2s; }
     .bottom-menu a i { font-size: 20px; }
     .bottom-menu a.active { color: #7c3aed; }
     .bottom-menu a.active i { background: #ede9fe; padding: 6px 14px; border-radius: 30px; }
 
-    /* TOAST */
     #gp-toast-container { position: fixed; top: 1rem; right: 1rem; z-index: 2000; display: flex; flex-direction: column; gap: .5rem; max-width: min(340px, calc(100vw - 2rem)); }
     .gp-toast { display: flex; align-items: flex-start; gap: .6rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: .85rem 1rem; box-shadow: 0 12px 32px rgba(0,0,0,.1); opacity: 0; transform: translateX(16px); transition: .25s; font-size: .83rem; line-height: 1.5; }
     .gp-toast--visible { opacity: 1; transform: translateX(0); }
@@ -103,7 +94,6 @@
 
   <div id="gp-toast-container"></div>
 
-  <!-- HEADER -->
   <div id="gradient">
     <div class="header-content">
       <div class="avatar"><i class="fas fa-user"></i></div>
@@ -114,14 +104,12 @@
     </div>
   </div>
 
-  <!-- BALANCE -->
   <div class="balance-card">
     <div class="balance-label"><i class="fas fa-wallet"></i> Available Balance</div>
     <div class="balance-amount">₦<span id="number">7,500</span></div>
     <div class="balance-sub"><i class="fas fa-arrow-up"></i> Watch ads below to earn more</div>
   </div>
 
-  <!-- STATS -->
   <div class="stats-row">
     <div class="stat-item">
       <div class="stat-number green" id="todayEarnings">+₦0</div>
@@ -137,29 +125,24 @@
     </div>
   </div>
 
-  <!-- WARNING -->
   <div class="warn-banner">
     <i class="fas fa-triangle-exclamation"></i>
     <span><strong>Ads session is monitored.</strong> Stay on the ad page for the timer shown, then come back to claim. Coming back too early = no reward.</span>
   </div>
 
-  <!-- SECTION -->
   <div class="section-title"><i class="fas fa-rectangle-ad"></i> Watch & Earn</div>
 
-  <!-- FILTERS -->
   <div class="filter-bar">
     <button class="fpill active" data-f="all">All</button>
     <button class="fpill" data-f="available">Available</button>
     <button class="fpill" data-f="viewed">Viewed</button>
-    <button class="fpill" data-f="10">₦10</button>
-    <button class="fpill" data-f="15">₦15</button>
-    <button class="fpill" data-f="20">₦20</button>
+    <button class="fpill" data-f="300">₦300</button>
+    <button class="fpill" data-f="450">₦450</button>
+    <button class="fpill" data-f="600">₦600</button>
   </div>
 
-  <!-- AD GRID -->
   <div id="adGrid"></div>
 
-  <!-- BOTTOM NAV -->
   <div class="bottom-menu">
     <a href="home.html" class="active"><i class="fas fa-rectangle-ad"></i><span>Ads</span></a>
     <a href="withdraw.html"><i class="fas fa-money-bill-transfer"></i><span>Withdraw</span></a>
@@ -181,47 +164,46 @@
       setTimeout(()=>{t.classList.remove('gp-toast--visible');setTimeout(()=>t.remove(),300);},duration);
     }
 
-    // ── ADS (30) ──
+    // ── ADS (30) — rewards ₦300 / ₦450 / ₦600 ──
     const ADS = [
-      {id:'ad_01',name:'Opay',icon:'💳',timer:15,reward:10,desc:'Fast digital payments across Nigeria'},
-      {id:'ad_02',name:'Kuda Bank',icon:'🏦',timer:15,reward:10,desc:'The bank account built for Nigerians'},
-      {id:'ad_03',name:'PalmPay',icon:'💳',timer:20,reward:15,desc:'Send money instantly, pay bills easily'},
-      {id:'ad_04',name:'Moniepoint',icon:'💳',timer:15,reward:10,desc:'Business banking that works for you'},
-      {id:'ad_05',name:'FairMoney',icon:'💰',timer:20,reward:15,desc:'Instant loans up to ₦1 million'},
-      {id:'ad_06',name:'PiggyVest',icon:'🐷',timer:20,reward:15,desc:'Save and invest with ease in Nigeria'},
-      {id:'ad_07',name:'Chipper Cash',icon:'💳',timer:15,reward:10,desc:'Send money across Africa for free'},
-      {id:'ad_08',name:'Jumia',icon:'🛒',timer:20,reward:15,desc:'Shop from millions of products online'},
-      {id:'ad_09',name:'Konga',icon:'🛒',timer:15,reward:10,desc:"Nigeria's trusted online marketplace"},
-      {id:'ad_10',name:'Jiji.ng',icon:'🏷️',timer:15,reward:10,desc:'Buy and sell anything in Nigeria'},
-      {id:'ad_11',name:'Slot Nigeria',icon:'📱',timer:20,reward:15,desc:'Latest phones and gadgets, best prices'},
-      {id:'ad_12',name:"Domino's",icon:'🍕',timer:20,reward:15,desc:'Hot fresh pizza delivered to your door'},
-      {id:'ad_13',name:'Chicken Republic',icon:'🍗',timer:15,reward:10,desc:"Nigeria's favourite fast food chain"},
-      {id:'ad_14',name:'Chowdeck',icon:'🍱',timer:20,reward:15,desc:'Food delivery from top restaurants fast'},
-      {id:'ad_15',name:'Glovo',icon:'🛵',timer:15,reward:10,desc:'Get food and groceries in minutes'},
-      {id:'ad_16',name:'Flutterwave',icon:'⚡',timer:30,reward:20,desc:'Payment infrastructure for Africa'},
-      {id:'ad_17',name:'Paystack',icon:'💳',timer:30,reward:20,desc:'Accept online payments with ease'},
-      {id:'ad_18',name:'Paga',icon:'📲',timer:20,reward:15,desc:'Mobile money and payment solutions'},
-      {id:'ad_19',name:'Boomplay',icon:'🎵',timer:20,reward:15,desc:'African music streaming platform'},
-      {id:'ad_20',name:'IrokoTV',icon:'📺',timer:20,reward:15,desc:'Stream the best Nollywood movies online'},
-      {id:'ad_21',name:'ULesson',icon:'📚',timer:20,reward:15,desc:"Learn with Nigeria's best tutors"},
-      {id:'ad_22',name:'AltSchool Africa',icon:'🎓',timer:30,reward:20,desc:'Tech education for African developers'},
-      {id:'ad_23',name:'Wakanow',icon:'✈️',timer:30,reward:20,desc:'Book flights and hotels at best prices'},
-      {id:'ad_24',name:'Hotels.ng',icon:'🏨',timer:30,reward:20,desc:'Discover and book hotels across Nigeria'},
-      {id:'ad_25',name:'DSTV Nigeria',icon:'📺',timer:20,reward:15,desc:'Your favourite TV channels and sport'},
-      {id:'ad_26',name:'MTN Nigeria',icon:'📶',timer:20,reward:15,desc:'Stay connected everywhere in Nigeria'},
-      {id:'ad_27',name:'Airtel Nigeria',icon:'📡',timer:20,reward:15,desc:'4G internet across all of Nigeria'},
-      {id:'ad_28',name:'Zenith Bank',icon:'🏦',timer:30,reward:20,desc:'Your number one bank in Nigeria'},
-      {id:'ad_29',name:'GTBank',icon:'🏦',timer:20,reward:15,desc:'Brilliant banking with GTBank'},
-      {id:'ad_30',name:'CashTube',icon:'⚡',timer:15,reward:10,desc:'Nigeria number 1 earning platform'},
+      {id:'ad_01',name:'Opay',icon:'💳',timer:15,reward:300,desc:'Fast digital payments across Nigeria'},
+      {id:'ad_02',name:'Kuda Bank',icon:'🏦',timer:15,reward:300,desc:'The bank account built for Nigerians'},
+      {id:'ad_03',name:'PalmPay',icon:'💳',timer:20,reward:450,desc:'Send money instantly, pay bills easily'},
+      {id:'ad_04',name:'Moniepoint',icon:'💳',timer:15,reward:300,desc:'Business banking that works for you'},
+      {id:'ad_05',name:'FairMoney',icon:'💰',timer:20,reward:450,desc:'Instant loans up to ₦1 million'},
+      {id:'ad_06',name:'PiggyVest',icon:'🐷',timer:20,reward:450,desc:'Save and invest with ease in Nigeria'},
+      {id:'ad_07',name:'Chipper Cash',icon:'💳',timer:15,reward:300,desc:'Send money across Africa for free'},
+      {id:'ad_08',name:'Jumia',icon:'🛒',timer:20,reward:450,desc:'Shop from millions of products online'},
+      {id:'ad_09',name:'Konga',icon:'🛒',timer:15,reward:300,desc:"Nigeria's trusted online marketplace"},
+      {id:'ad_10',name:'Jiji.ng',icon:'🏷️',timer:15,reward:300,desc:'Buy and sell anything in Nigeria'},
+      {id:'ad_11',name:'Slot Nigeria',icon:'📱',timer:20,reward:450,desc:'Latest phones and gadgets, best prices'},
+      {id:'ad_12',name:"Domino's",icon:'🍕',timer:20,reward:450,desc:'Hot fresh pizza delivered to your door'},
+      {id:'ad_13',name:'Chicken Republic',icon:'🍗',timer:15,reward:300,desc:"Nigeria's favourite fast food chain"},
+      {id:'ad_14',name:'Chowdeck',icon:'🍱',timer:20,reward:450,desc:'Food delivery from top restaurants fast'},
+      {id:'ad_15',name:'Glovo',icon:'🛵',timer:15,reward:300,desc:'Get food and groceries in minutes'},
+      {id:'ad_16',name:'Flutterwave',icon:'⚡',timer:30,reward:600,desc:'Payment infrastructure for Africa'},
+      {id:'ad_17',name:'Paystack',icon:'💳',timer:30,reward:600,desc:'Accept online payments with ease'},
+      {id:'ad_18',name:'Paga',icon:'📲',timer:20,reward:450,desc:'Mobile money and payment solutions'},
+      {id:'ad_19',name:'Boomplay',icon:'🎵',timer:20,reward:450,desc:'African music streaming platform'},
+      {id:'ad_20',name:'IrokoTV',icon:'📺',timer:20,reward:450,desc:'Stream the best Nollywood movies online'},
+      {id:'ad_21',name:'ULesson',icon:'📚',timer:20,reward:450,desc:"Learn with Nigeria's best tutors"},
+      {id:'ad_22',name:'AltSchool Africa',icon:'🎓',timer:30,reward:600,desc:'Tech education for African developers'},
+      {id:'ad_23',name:'Wakanow',icon:'✈️',timer:30,reward:600,desc:'Book flights and hotels at best prices'},
+      {id:'ad_24',name:'Hotels.ng',icon:'🏨',timer:30,reward:600,desc:'Discover and book hotels across Nigeria'},
+      {id:'ad_25',name:'DSTV Nigeria',icon:'📺',timer:20,reward:450,desc:'Your favourite TV channels and sport'},
+      {id:'ad_26',name:'MTN Nigeria',icon:'📶',timer:20,reward:450,desc:'Stay connected everywhere in Nigeria'},
+      {id:'ad_27',name:'Airtel Nigeria',icon:'📡',timer:20,reward:450,desc:'4G internet across all of Nigeria'},
+      {id:'ad_28',name:'Zenith Bank',icon:'🏦',timer:30,reward:600,desc:'Your number one bank in Nigeria'},
+      {id:'ad_29',name:'GTBank',icon:'🏦',timer:20,reward:450,desc:'Brilliant banking with GTBank'},
+      {id:'ad_30',name:'CashTube',icon:'⚡',timer:15,reward:300,desc:'Nigeria number 1 earning platform'},
     ];
 
     const TODAY = new Date().toISOString().split('T')[0];
 
-    // ── STATE ──
     let balance = parseInt(localStorage.getItem('number')) || 7500;
     let todayEarned = parseInt(localStorage.getItem('todayEarned')) || 0;
     let viewed = new Set(JSON.parse(localStorage.getItem('viewedAds_'+TODAY) || '[]'));
-    let active = null; // {adId, reward, required}
+    let active = null;
     let hiddenSince = null;
     let totalHidden = 0;
 
@@ -237,7 +219,7 @@
       document.getElementById('adsViewed').textContent = viewed.size + ' / ' + ADS.length;
     }
 
-    // ── VISIBILITY TRACKING (anti-cheat) ──
+    // anti-cheat: must actually leave the tab for the timer duration
     document.addEventListener('visibilitychange', () => {
       if(document.visibilityState === 'hidden'){
         hiddenSince = Date.now();
@@ -258,7 +240,6 @@
       }
     });
 
-    // ── RENDER ──
     function currentFilter(){ return document.querySelector('.fpill.active')?.dataset?.f || 'all'; }
 
     function renderGrid(filter){
@@ -266,9 +247,9 @@
       let list = ADS;
       if(filter === 'available') list = ADS.filter(a => !viewed.has(a.id));
       else if(filter === 'viewed') list = ADS.filter(a => viewed.has(a.id));
-      else if(filter === '10') list = ADS.filter(a => a.reward === 10);
-      else if(filter === '15') list = ADS.filter(a => a.reward === 15);
-      else if(filter === '20') list = ADS.filter(a => a.reward === 20);
+      else if(filter === '300') list = ADS.filter(a => a.reward === 300);
+      else if(filter === '450') list = ADS.filter(a => a.reward === 450);
+      else if(filter === '600') list = ADS.filter(a => a.reward === 600);
 
       if(!list.length){
         grid.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>' + (filter==='viewed' ? 'No ads viewed yet today' : 'All done for today! Fresh ads unlock at midnight.') + '</p></div>';
@@ -284,7 +265,7 @@
       const isAct = active?.adId === ad.id;
       let foot;
       if(done){
-        foot = '<div class="done-label"><i class="fas fa-check-circle"></i> Viewed — ₦' + fmt(ad.reward) + ' earned</div>';
+        foot = '<div class="done-label"><i class="fas fa-check-circle"></i> Viewed — ₦' + fmt(ad.reward) + '</div>';
       } else if(isAct){
         foot = '<div class="waiting-overlay">Stay away for ' + ad.timer + 's then come back to claim</div>';
       } else {
@@ -331,7 +312,6 @@
       const ad = ADS.find(a => a.id === adId);
       if(!ad || viewed.has(ad.id)) return;
 
-      // Open the ad link in a new tab
       window.open('https://omg10.com/4/11169333', '_blank', 'noopener,noreferrer');
 
       active = {adId, reward: ad.reward, required: ad.timer * 1000};
@@ -361,18 +341,15 @@
       showToast('✅ ₦' + fmt(reward) + ' credited to your wallet!', 'success', 4000);
     }
 
-    // ── FILTERS ──
     document.querySelectorAll('.fpill').forEach(b => b.addEventListener('click', () => {
       document.querySelectorAll('.fpill').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
       renderGrid(b.dataset.f);
     }));
 
-    // ── INIT ──
     updateStats();
     renderGrid('all');
 
-    // ── LIVECHAT ──
     window.__lc = window.__lc || {};
     window.__lc.license = 15808029;
     (function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));

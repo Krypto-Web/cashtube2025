@@ -106,7 +106,7 @@
 
   <div class="balance-card">
     <div class="balance-label"><i class="fas fa-wallet"></i> Available Balance</div>
-    <div class="balance-amount">₦<span id="number">7,500</span></div>
+    <div class="balance-amount">₦<span id="number">2,000</span></div>
     <div class="balance-sub"><i class="fas fa-arrow-up"></i> Watch ads below to earn more</div>
   </div>
 
@@ -164,7 +164,6 @@
       setTimeout(()=>{t.classList.remove('gp-toast--visible');setTimeout(()=>t.remove(),300);},duration);
     }
 
-    // ── ADS (30) — rewards ₦300 / ₦450 / ₦600 ──
     const ADS = [
       {id:'ad_01',name:'Opay',icon:'💳',timer:15,reward:300,desc:'Fast digital payments across Nigeria'},
       {id:'ad_02',name:'Kuda Bank',icon:'🏦',timer:15,reward:300,desc:'The bank account built for Nigerians'},
@@ -200,7 +199,7 @@
 
     const TODAY = new Date().toISOString().split('T')[0];
 
-    let balance = parseInt(localStorage.getItem('number')) || 7500;
+    let balance = parseInt(localStorage.getItem('number')) || 2000;
     let todayEarned = parseInt(localStorage.getItem('todayEarned')) || 0;
     let viewed = new Set(JSON.parse(localStorage.getItem('viewedAds_'+TODAY) || '[]'));
     let active = null;
@@ -219,7 +218,6 @@
       document.getElementById('adsViewed').textContent = viewed.size + ' / ' + ADS.length;
     }
 
-    // anti-cheat: must actually leave the tab for the timer duration
     document.addEventListener('visibilitychange', () => {
       if(document.visibilityState === 'hidden'){
         hiddenSince = Date.now();

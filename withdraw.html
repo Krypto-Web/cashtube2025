@@ -21,16 +21,30 @@
     .main-card h2 { font-size: 24px; font-weight: 800; color: #0f172a; text-align: center; margin-bottom: 4px; }
     .subtitle { text-align: center; color: #64748b; font-size: 14px; margin-bottom: 20px; }
 
-    .balance-strip { background: linear-gradient(145deg, #7c3aed, #5b21b6); border-radius: 20px; padding: 20px; color: #fff; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+    .balance-strip { background: linear-gradient(145deg, #7c3aed, #5b21b6); border-radius: 20px; padding: 20px; color: #fff; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
     .balance-strip .label { font-size: 12px; color: rgba(255,255,255,.75); margin-bottom: 2px; }
     .balance-strip .amount { font-size: 28px; font-weight: 800; }
     .balance-strip i { font-size: 32px; color: rgba(255,255,255,.25); }
 
+    .min-note { text-align: center; font-size: 12px; color: #94a3b8; margin-bottom: 20px; }
+    .min-note strong { color: #6b21a5; }
+
+    /* BIG WARNING */
+    .big-warning { background: #FEE2E2; border: 2px solid #FCA5A5; border-radius: 16px; padding: 16px; display: flex; gap: 12px; margin-bottom: 20px; }
+    .big-warning .warning-icon { width: 40px; height: 40px; border-radius: 50%; background: #DC2626; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .big-warning .warning-text { font-size: 13px; color: #991B1B; line-height: 1.55; }
+    .big-warning .warning-text strong { display: block; font-size: 14px; font-weight: 800; margin-bottom: 4px; color: #7F1D1D; text-transform: uppercase; letter-spacing: .02em; }
+    .big-warning .warning-text span { display: block; margin-top: 4px; }
+    .big-warning .warning-text em { font-style: normal; font-weight: 700; color: #B91C1C; }
+
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 6px; }
     .form-group label i { color: #7c3aed; width: 18px; }
-    .form-group input { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 14px; font-size: 15px; background: #f8fafc; outline: none; transition: .2s; }
-    .form-group input:focus { border-color: #7c3aed; background: #fff; box-shadow: 0 0 0 4px rgba(124,58,237,.08); }
+    .form-group input,
+    .form-group select { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 14px; font-size: 15px; background: #f8fafc; outline: none; transition: .2s; font-family: 'Inter', sans-serif; color: #0f172a; }
+    .form-group input:focus,
+    .form-group select:focus { border-color: #7c3aed; background: #fff; box-shadow: 0 0 0 4px rgba(124,58,237,.08); }
+    .form-group select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; cursor: pointer; }
 
     .quick-amounts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
     .quick-amounts button { padding: 6px 14px; border-radius: 50px; border: 1.5px solid #e2e8f0; background: #fff; font-size: 12px; font-weight: 700; color: #475569; cursor: pointer; transition: .15s; }
@@ -47,7 +61,7 @@
     .crypto-link a { color: #6b21a5; font-weight: 700; text-decoration: none; }
     .crypto-link a:hover { text-decoration: underline; }
 
-    /* ── PENDING STATE ── */
+    /* PENDING STATE */
     #pendingView { display: none; text-align: center; }
     #pendingView .pending-icon { width: 90px; height: 90px; border-radius: 50%; background: #FEF3C7; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 40px; color: #D97706; animation: pulse 1.8s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(217,119,6,.25);} 50%{ box-shadow: 0 0 0 18px rgba(217,119,6,0);} }
@@ -70,7 +84,6 @@
     .btn-home { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; border-radius: 14px; background: #0f172a; color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; transition: .2s; }
     .btn-home:hover { background: #1e293b; }
 
-    /* BOTTOM NAV */
     .bottom-menu { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(0,0,0,.05); display: flex; justify-content: space-around; align-items: center; padding: 12px 10px 16px; z-index: 999; }
     .bottom-menu a { display: flex; flex-direction: column; align-items: center; color: #94a3b8; text-decoration: none; font-size: 11px; font-weight: 600; gap: 2px; transition: .2s; }
     .bottom-menu a i { font-size: 20px; }
@@ -112,27 +125,48 @@
         <i class="fas fa-wallet"></i>
       </div>
 
+      <div class="min-note">Minimum withdrawal: <strong>₦55,000</strong></div>
+
+      <!-- BIG WARNING -->
+      <div class="big-warning">
+        <div class="warning-icon"><i class="fas fa-triangle-exclamation"></i></div>
+        <div class="warning-text">
+          <strong>⚠ Important — Read Before Withdrawing</strong>
+          Withdrawals must be made <em>only</em> to the same account you used to purchase your passcode.
+          <span>Using a different account may result in <em>failed withdrawal</em> with <em>no refund</em>.</span>
+          <span>Please confirm your <strong>account number</strong>, <strong>account name</strong>, and <strong>bank</strong> are 100% correct before submitting.</span>
+        </div>
+      </div>
+
       <form id="withdrawForm">
         <div class="form-group">
-          <label><i class="fas fa-user"></i> Account Number</label>
-          <input type="number" id="accNumber" placeholder="Enter account number" required>
+          <label><i class="fas fa-university"></i> Bank Name</label>
+          <select id="bankName" required>
+            <option value="" disabled selected>— Select your bank —</option>
+            <option value="PalmPay">PalmPay</option>
+            <option value="Opay">Opay</option>
+            <option value="Moniepoint">Moniepoint</option>
+          </select>
         </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Account Number</label>
+          <input type="number" id="accNumber" placeholder="Enter your account number" required>
+        </div>
+
         <div class="form-group">
           <label><i class="fas fa-user-tag"></i> Account Name</label>
-          <input type="text" id="accName" placeholder="Enter account name" required>
+          <input type="text" id="accName" placeholder="Enter your account name" required>
         </div>
-        <div class="form-group">
-          <label><i class="fas fa-university"></i> Bank Name</label>
-          <input type="text" id="bankName" placeholder="Enter bank name" required>
-        </div>
+
         <div class="form-group">
           <label><i class="fas fa-naira-sign"></i> Amount (₦)</label>
           <input type="number" id="amount" placeholder="Enter amount" required>
           <div class="quick-amounts">
-            <button type="button" onclick="setAmt(1000)">₦1,000</button>
-            <button type="button" onclick="setAmt(2000)">₦2,000</button>
-            <button type="button" onclick="setAmt(5000)">₦5,000</button>
-            <button type="button" onclick="setAmt(10000)">₦10,000</button>
+            <button type="button" onclick="setAmt(55000)">₦55,000</button>
+            <button type="button" onclick="setAmt(60000)">₦60,000</button>
+            <button type="button" onclick="setAmt(75000)">₦75,000</button>
+            <button type="button" onclick="setAmt(100000)">₦100,000</button>
           </div>
         </div>
 
@@ -143,7 +177,7 @@
 
       <div class="notice-banner">
         <i class="fas fa-circle-info"></i>
-        <span>Withdrawals are processed within <strong>24 hours</strong>. Ensure your account details are correct — transfers cannot be reversed.</span>
+        <span>Withdrawals are processed within <strong>24 hours</strong>. Transfers cannot be reversed — double-check every field.</span>
       </div>
 
       <div class="crypto-link">
@@ -159,9 +193,9 @@
 
       <div class="receipt">
         <div class="receipt-row"><span class="rl">Amount</span><span class="rv amount">₦<span id="pAmount">0</span></span></div>
+        <div class="receipt-row"><span class="rl">Bank</span><span class="rv" id="pBank">—</span></div>
         <div class="receipt-row"><span class="rl">Account Number</span><span class="rv" id="pNumber">—</span></div>
         <div class="receipt-row"><span class="rl">Account Name</span><span class="rv" id="pName">—</span></div>
-        <div class="receipt-row"><span class="rl">Bank</span><span class="rv" id="pBank">—</span></div>
         <div class="receipt-row"><span class="rl">Reference</span><span class="rv" id="pRef">—</span></div>
         <div class="receipt-row"><span class="rl">Date</span><span class="rv" id="pDate">—</span></div>
         <div class="receipt-row"><span class="rl">Status</span><span class="rv"><span class="status-pill"><i class="fas fa-clock"></i> Pending</span></span></div>
@@ -200,12 +234,13 @@
 
     function fmt(n){ return Number(n).toLocaleString('en-US'); }
 
-    let balance = parseInt(localStorage.getItem('number')) || 7500;
+    let balance = parseInt(localStorage.getItem('number')) || 2000;
+    const MIN_WITHDRAWAL = 55000;
+    const ALLOWED_BANKS = ['PalmPay','Opay','Moniepoint'];
     document.getElementById('balanceDisplay').textContent = fmt(balance);
 
     function setAmt(v){ document.getElementById('amount').value = v; }
 
-    // If a pending withdrawal already exists, show pending view on load
     const existingPending = localStorage.getItem('pendingWithdrawal');
     if(existingPending){
       try { showPending(JSON.parse(existingPending)); } catch(e){}
@@ -214,41 +249,49 @@
     document.getElementById('withdrawForm').addEventListener('submit', function(e){
       e.preventDefault();
 
+      const bankName = document.getElementById('bankName').value.trim();
       const accNumber = document.getElementById('accNumber').value.trim();
       const accName = document.getElementById('accName').value.trim();
-      const bankName = document.getElementById('bankName').value.trim();
       const amount = document.getElementById('amount').value.trim();
 
-      if(!accNumber || !accName || !bankName || !amount){
+      if(!bankName || !accNumber || !accName || !amount){
         showToast('Please fill in all fields.', 'warning'); return;
+      }
+      if(!ALLOWED_BANKS.includes(bankName)){
+        showToast('Please select a valid bank (PalmPay, Opay, or Moniepoint).', 'warning'); return;
       }
       if(accNumber.length < 10){
         showToast('Enter a valid account number (10 digits).', 'warning'); return;
       }
+      if(accName.length < 3){
+        showToast('Enter the full account name.', 'warning'); return;
+      }
       const amt = parseInt(amount);
       if(amt <= 0){ showToast('Enter a valid amount.', 'warning'); return; }
+      if(amt < MIN_WITHDRAWAL){
+        showToast('Minimum withdrawal is ₦' + fmt(MIN_WITHDRAWAL) + '. You entered ₦' + fmt(amt) + '.', 'warning', 5000);
+        return;
+      }
       if(amt > balance){ showToast('Insufficient balance. You have ₦' + fmt(balance), 'error'); return; }
 
       const btn = document.getElementById('submitBtn');
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
 
-      // Deduct balance and store pending record
       balance -= amt;
       localStorage.setItem('number', balance);
 
       const record = {
         amount: amt,
+        bank: bankName,
         number: accNumber,
         name: accName,
-        bank: bankName,
         ref: 'CT-' + Date.now().toString().slice(-8) + '-' + Math.random().toString(36).substring(2,6).toUpperCase(),
         date: new Date().toLocaleString('en-NG', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true }),
         status: 'pending'
       };
       localStorage.setItem('pendingWithdrawal', JSON.stringify(record));
 
-      // Also keep old keys so next-page.html still works if you use it
       localStorage.setItem('palmpayNumber', accNumber);
       localStorage.setItem('palmpayName', accName);
       localStorage.setItem('palmpayCome', bankName);
@@ -265,9 +308,9 @@
       document.getElementById('pendingView').style.display = 'block';
 
       document.getElementById('pAmount').textContent = fmt(r.amount);
+      document.getElementById('pBank').textContent = r.bank;
       document.getElementById('pNumber').textContent = r.number;
       document.getElementById('pName').textContent = r.name;
-      document.getElementById('pBank').textContent = r.bank;
       document.getElementById('pRef').textContent = r.ref;
       document.getElementById('pDate').textContent = r.date;
     }
